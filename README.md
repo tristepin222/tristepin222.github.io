@@ -1,1 +1,0 @@
-# tristepin222.github.io
