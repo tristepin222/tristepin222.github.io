@@ -1,16 +1,660 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Game Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tristepin222 — Game Dev Portfolio</title>
+  <meta name="description" content="Portfolio of a C++ and game engine developer. Featuring a custom Vulkan-based ECS game engine prototype and other projects." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0a0c10;
+      --bg-card: #0f1117;
+      --bg-card-hover: #151820;
+      --border: rgba(255,255,255,0.07);
+      --border-hover: rgba(108,99,255,0.5);
+      --accent: #6c63ff;
+      --accent-dim: rgba(108,99,255,0.15);
+      --accent2: #00d2ff;
+      --text: #e2e8f0;
+      --text-muted: #64748b;
+      --text-subtle: #94a3b8;
+      --tag-bg: rgba(108,99,255,0.12);
+      --tag-text: #a59fff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── Background grid texture ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(108,99,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(108,99,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Glow blob ── */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -20vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80vw;
+      height: 60vh;
+      background: radial-gradient(ellipse, rgba(108,99,255,0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10,12,16,0.85);
+      backdrop-filter: blur(12px);
+    }
+
+    nav .inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-subtle);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 100px 0 72px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(108,99,255,0.25);
+      border-radius: 100px;
+      padding: 4px 14px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--tag-text);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .gradient {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-subtle);
+      max-width: 540px;
+      margin: 0 auto 36px;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 22px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 0 24px rgba(108,99,255,0.35);
+    }
+
+    .btn-primary:hover {
+      background: #7c74ff;
+      box-shadow: 0 0 32px rgba(108,99,255,0.55);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-subtle);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--border-hover);
+      color: var(--text);
+      background: var(--accent-dim);
+    }
+
+    /* ── Section headings ── */
+    .section-header {
+      margin-bottom: 36px;
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-header h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .section-header p {
+      color: var(--text-subtle);
+      margin-top: 8px;
+      font-size: 0.95rem;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 80px 0;
+    }
+
+    /* ── Project Card ── */
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.25s, box-shadow 0.3s;
+    }
+
+    .project-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(108,99,255,0.1);
+    }
+
+    /* Engine preview placeholder */
+    .project-preview {
+      width: 100%;
+      height: 240px;
+      background:
+        radial-gradient(ellipse at 30% 50%, rgba(108,99,255,0.2), transparent 60%),
+        radial-gradient(ellipse at 75% 30%, rgba(0,210,255,0.1), transparent 50%),
+        #080a0f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated grid lines in preview */
+    .project-preview::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(108,99,255,0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(108,99,255,0.1) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .preview-label {
+      position: relative;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: rgba(108,99,255,0.6);
+      border: 1px solid rgba(108,99,255,0.2);
+      border-radius: 6px;
+      padding: 6px 14px;
+      background: rgba(108,99,255,0.05);
+      backdrop-filter: blur(4px);
+    }
+
+    /* Fake gizmo geometry decoration */
+    .project-preview .geo {
+      position: absolute;
+      border: 1.5px solid rgba(108,99,255,0.35);
+      border-radius: 3px;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .project-preview .geo-cube {
+      width: 64px;
+      height: 64px;
+      top: 38%;
+      left: 25%;
+      transform: rotate(22deg);
+      animation-delay: 0s;
+    }
+
+    .project-preview .geo-tri {
+      width: 0;
+      height: 0;
+      border: none;
+      border-left: 26px solid transparent;
+      border-right: 26px solid transparent;
+      border-bottom: 46px solid rgba(0,210,255,0.25);
+      border-radius: 0;
+      top: 30%;
+      right: 28%;
+      animation-delay: 1.5s;
+    }
+
+    .project-preview .geo-ring {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border-color: rgba(0,210,255,0.2);
+      bottom: 20%;
+      right: 18%;
+      animation-delay: 3s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(22deg); }
+      50% { transform: translateY(-10px) rotate(25deg); }
+    }
+
+    .project-card-body {
+      padding: 28px;
+    }
+
+    .project-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .status-badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.04em;
+    }
+
+    .status-wip {
+      background: rgba(255,180,0,0.12);
+      color: #fbbf24;
+      border: 1px solid rgba(255,180,0,0.2);
+    }
+
+    .project-desc {
+      color: var(--text-subtle);
+      font-size: 0.925rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.73rem;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      border: 1px solid rgba(108,99,255,0.18);
+      border-radius: 6px;
+      padding: 3px 10px;
+    }
+
+    .project-highlights {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 16px;
+      margin-bottom: 24px;
+    }
+
+    .project-highlights li {
+      font-size: 0.85rem;
+      color: var(--text-subtle);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .project-highlights li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ── About / Skills ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .skill-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      transition: border-color 0.25s;
+    }
+
+    .skill-card:hover {
+      border-color: rgba(108,99,255,0.3);
+    }
+
+    .skill-card h3 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .skill-list li {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-subtle);
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body>
-  <h1>My Games</h1>
 
-  <ul>
-    <li><a href="games/game1/index.html">Game 1 (WebGL)</a></li>
-    <li><a href="https://your-itch.io-page">Download Games</a></li>
-    <li><a href="https://github.com/yourname">GitHub</a></li>
-  </ul>
+  <!-- Navigation -->
+  <nav>
+    <div class="inner">
+      <a class="nav-logo" href="#">tristepin222</a>
+      <ul class="nav-links">
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="https://github.com/tristepin222" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">C++ &amp; Game Engine Developer</div>
+      <h1>
+        Building games<br />
+        <span class="gradient">from the ground up.</span>
+      </h1>
+      <p>
+        Passionate about low-level rendering, engine architecture, and
+        real-time systems. I write C++ engines before I write games.
+      </p>
+      <div class="hero-links">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="https://github.com/tristepin222" target="_blank" rel="noopener" class="btn btn-ghost">GitHub Profile</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">// projects</div>
+        <h2>What I've built</h2>
+        <p>A selection of personal projects and prototypes.</p>
+      </div>
+
+      <!-- Engine Card -->
+      <div class="project-card">
+        <div class="project-preview">
+          <div class="geo geo-cube"></div>
+          <div class="geo geo-tri"></div>
+          <div class="geo geo-ring"></div>
+          <div class="preview-label">ECS · Vulkan · ImGui Editor</div>
+        </div>
+        <div class="project-card-body">
+          <div class="project-meta">
+            <h3 class="project-title">C++ Vulkan Game Engine</h3>
+            <span class="status-badge status-wip">In Progress</span>
+          </div>
+          <p class="project-desc">
+            A modular, data-oriented game engine prototype built entirely from scratch in C++20
+            using the Vulkan graphics API. Designed around a custom Entity Component System with
+            a clean two-project workspace: a reusable static library engine and a sandbox game
+            that consumes it — similar to how Unity separates runtime from editor scripting.
+          </p>
+          <div class="tech-tags">
+            <span class="tag">C++20</span>
+            <span class="tag">Vulkan</span>
+            <span class="tag">GLSL / SPIR-V</span>
+            <span class="tag">ECS</span>
+            <span class="tag">Dear ImGui</span>
+            <span class="tag">ImGuizmo</span>
+            <span class="tag">GLFW</span>
+            <span class="tag">GLM</span>
+            <span class="tag">CMake</span>
+          </div>
+          <ul class="project-highlights">
+            <li>Custom ECS Registry (dense component storage)</li>
+            <li>Vulkan render loop &amp; push constants instancing</li>
+            <li>WYSIWYG ImGui editor with entity hierarchy</li>
+            <li>3D gizmos (translate / rotate / scale)</li>
+            <li>Raycast viewport picking (bounding-sphere)</li>
+            <li>Infinite procedural world grid shader</li>
+            <li>Generic component serialization registry</li>
+            <li>Automated shader compilation (glslc)</li>
+          </ul>
+          <div class="project-links">
+            <a href="https://github.com/tristepin222/Cpp-GameEngine-Prototype"
+               target="_blank" rel="noopener"
+               class="btn btn-primary">View on GitHub</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider container" />
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">// skills</div>
+        <h2>Technical background</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>Languages</h3>
+          <ul class="skill-list">
+            <li>C / C++20</li>
+            <li>GLSL</li>
+            <li>Python</li>
+            <li>PHP</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Graphics &amp; Engine</h3>
+          <ul class="skill-list">
+            <li>Vulkan API</li>
+            <li>SPIR-V shaders</li>
+            <li>ECS architecture</li>
+            <li>Dear ImGui</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Build &amp; Tooling</h3>
+          <ul class="skill-list">
+            <li>CMake</li>
+            <li>MSBuild / MSVC</li>
+            <li>Git</li>
+            <li>glslc</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Concepts</h3>
+          <ul class="skill-list">
+            <li>Data-oriented design</li>
+            <li>Memory management</li>
+            <li>Real-time rendering</li>
+            <li>Scene serialization</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider container" />
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>
+        Built with vanilla HTML &amp; CSS ·
+        <a href="https://github.com/tristepin222/tristepin222.github.io" target="_blank" rel="noopener">Source on GitHub</a>
+      </p>
+    </div>
+  </footer>
 
 </body>
 </html>
