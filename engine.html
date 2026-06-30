@@ -495,22 +495,21 @@
           <!-- Overview -->
           <section>
             <div class="section-label">// overview</div>
-            <h2>What is this project?</h2>
+            <h2>About this project</h2>
             <p>
-              This is a <strong>custom game engine built entirely from scratch</strong>, with no off-the-shelf engine
-              underneath it. The goal was to understand exactly how game engines like Unity or Unreal work on the
-              inside — by building one myself.
+              This is a <strong>custom game engine built entirely from scratch</strong>, with no existing engine
+              underneath it. I started it to understand how engines like Unity or Unreal actually work internally,
+              by writing each part myself.
             </p>
             <p>
-              It handles everything a real engine does: rendering 3D objects on screen, letting you edit a scene
-              visually, saving and loading that scene to a file, and giving you a clean, scriptable way to define
-              game behavior.
+              It covers what a real engine needs: rendering 3D objects, an interactive editor to place and adjust
+              them, the ability to save and reload a scene, and a clean structure for writing game logic on top of it.
             </p>
             <div class="callout">
               <p>
-                <strong>Why build an engine instead of just making a game?</strong> Because understanding the
-                foundation is what separates a developer who uses tools from one who can build them. This project
-                is proof that I can work at that lower level.
+                I chose to build an engine rather than just a game because I wanted to understand the tooling,
+                not just use it. Working at this level requires strong fundamentals in systems programming,
+                memory management, and API design.
               </p>
             </div>
           </section>
@@ -534,12 +533,12 @@
                   </svg>
                 </div>
                 <div>
-                  <div class="feature-title">Real-time 3D rendering</div>
-                  <div class="feature-desc">
-                    The engine renders 3D objects in real time using the <strong>Vulkan graphics API</strong> — the
-                    same low-level technology used in AAA games. Every frame, geometry is sent to the GPU and drawn
-                    with custom-written shaders.
-                  </div>
+                   <div class="feature-title">Real-time 3D rendering</div>
+                   <div class="feature-desc">
+                     The engine renders 3D objects in real time using the <strong>Vulkan graphics API</strong>,
+                     the same low-level graphics technology used in professional game productions.
+                     Geometry is processed on the GPU each frame using custom-written shader programs.
+                   </div>
                 </div>
               </li>
 
@@ -556,12 +555,12 @@
                   </svg>
                 </div>
                 <div>
-                  <div class="feature-title">Built-in visual editor</div>
-                  <div class="feature-desc">
-                    A fully interactive editor panel (similar to Unity's Inspector or Unreal's Details panel) lets
-                    you browse all objects in the scene, rename them, tweak their position, color, and shape, all
-                    in real time without restarting the engine.
-                  </div>
+                   <div class="feature-title">Built-in visual editor</div>
+                   <div class="feature-desc">
+                     The engine includes an interactive editor panel, similar to Unity's Inspector, where you can
+                     browse scene objects, rename them, and adjust their position, color, and shape in real time
+                     without restarting the application.
+                   </div>
                 </div>
               </li>
 
@@ -577,12 +576,12 @@
                   </svg>
                 </div>
                 <div>
-                  <div class="feature-title">3D transform gizmos</div>
-                  <div class="feature-desc">
-                    Click on any object in the 3D viewport and a set of interactive handles appears — the same
-                    colored arrows and rings you'd find in Unity or Blender. Drag them to move, rotate, or resize
-                    objects directly in the scene.
-                  </div>
+                   <div class="feature-title">3D transform gizmos</div>
+                   <div class="feature-desc">
+                     Clicking an object in the 3D viewport shows a set of interactive handles, the same colored
+                     arrows and rings found in Unity or Blender. You can drag them to move, rotate, or resize
+                     objects directly inside the scene.
+                   </div>
                 </div>
               </li>
 
@@ -594,12 +593,12 @@
                   </svg>
                 </div>
                 <div>
-                  <div class="feature-title">Click-to-select in the viewport</div>
-                  <div class="feature-desc">
-                    You can click directly on a 3D object in the viewport to select it. This uses a mathematical
-                    technique called <strong>raycasting</strong> that translates the 2D position of your mouse into
-                    a ray shot through the 3D world to detect which object you're pointing at.
-                  </div>
+                   <div class="feature-title">Click-to-select in the viewport</div>
+                   <div class="feature-desc">
+                     Clicking anywhere in the 3D viewport selects the object under the cursor. This is done
+                     with <strong>raycasting</strong>: a ray is projected from the camera through the mouse
+                     position into the 3D scene to find which object was clicked.
+                   </div>
                 </div>
               </li>
 
@@ -612,13 +611,13 @@
                   </svg>
                 </div>
                 <div>
-                  <div class="feature-title">Scene save &amp; load</div>
-                  <div class="feature-desc">
-                    The entire scene — every object, its position, color, and type — can be saved to a
-                    file and reloaded later. The serialization system is <strong>fully extensible</strong>:
-                    custom objects added by a game developer are automatically included in saves without
-                    touching the engine code.
-                  </div>
+                   <div class="feature-title">Scene save &amp; load</div>
+                   <div class="feature-desc">
+                     The full scene, including every object, its position, color, and type, can be saved
+                     to a file and reloaded later. The system is <strong>extensible by design</strong>:
+                     custom object types added by a game developer are automatically included in saves,
+                     with no changes needed to the engine itself.
+                   </div>
                 </div>
               </li>
 
@@ -631,12 +630,12 @@
                   </svg>
                 </div>
                 <div>
-                  <div class="feature-title">Component-based object model</div>
-                  <div class="feature-desc">
-                    Every object in the world is built by combining small, focused pieces of data called
-                    <strong>components</strong> — a position, a shape, a color, a camera. This is the same
-                    design pattern used by Unity and Unreal, and it keeps the codebase clean and easy to extend.
-                  </div>
+                   <div class="feature-title">Component-based object model</div>
+                   <div class="feature-desc">
+                     Objects are built by attaching small, focused data pieces called <strong>components</strong>:
+                     a position, a mesh, a material, a camera. This is the same pattern used by Unity and Unreal.
+                     It keeps the codebase flexible and makes adding new behavior straightforward.
+                   </div>
                 </div>
               </li>
 
@@ -650,13 +649,13 @@
                   </svg>
                 </div>
                 <div>
-                  <div class="feature-title">Modular engine / game split</div>
-                  <div class="feature-desc">
-                    The engine is packaged as a <strong>separate static library</strong> that a game project
-                    links against — just like how Unity the engine is separate from your Unity project.
-                    The included sandbox game demonstrates how thin and clean a "game script" can be when
-                    the engine does the heavy lifting.
-                  </div>
+                   <div class="feature-title">Modular engine / game split</div>
+                   <div class="feature-desc">
+                     The engine is compiled as a <strong>separate static library</strong> that a game project
+                     links against, similar to how Unity separates its runtime from a user project.
+                     The included sandbox game shows how small a game-side script can be when the engine
+                     handles the infrastructure.
+                   </div>
                 </div>
               </li>
 
@@ -668,23 +667,23 @@
           <!-- Challenges -->
           <section>
             <div class="section-label">// challenges &amp; learnings</div>
-            <h2>What was hard — and what I learned</h2>
+            <h2>Challenges and takeaways</h2>
             <p>
-              Building a rendering engine means working without a safety net. There is no error message that says
-              "your triangle is in the wrong place" — the screen just stays black. Debugging requires reading GPU
-              validation logs, understanding memory alignment rules, and reasoning about what happens on hardware
-              you can't directly observe.
+              Working at this level means there are no helpful error messages. When something is wrong with the
+              rendering setup, the screen is just black. Debugging involves reading GPU validation output,
+              tracing memory layout issues, and reasoning carefully about code that runs on hardware you
+              cannot step through directly.
             </p>
             <p>
-              The biggest architectural challenge was <strong>designing systems that don't depend on each other</strong>.
-              For example, the scene serializer originally had to "know about" every type of object that could exist.
-              I redesigned it into a <strong>plugin-style registry</strong> where new object types register themselves —
-              meaning the engine stays clean regardless of what a game developer adds.
+              The main architectural challenge was <strong>keeping systems decoupled from each other</strong>.
+              The scene serializer, for example, originally needed to be updated every time a new object type
+              was added. I redesigned it as a <strong>registry</strong> where object types register their own
+              save and load logic, so the engine core never needs to change.
             </p>
             <p>
-              This project taught me to think in terms of <strong>interfaces and contracts</strong> rather than
-              just "code that works." Every system boundary is a design decision, and making the wrong one costs
-              hours of refactoring later.
+              Overall this project pushed me to think carefully about <strong>interface design and system
+              boundaries</strong>. Getting those right early saves significant rework later, and getting
+              them wrong is immediately felt.
             </p>
           </section>
 
