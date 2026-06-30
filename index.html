@@ -20,15 +20,15 @@
       --bg-card: #0f1117;
       --bg-card-hover: #151820;
       --border: rgba(255,255,255,0.07);
-      --border-hover: rgba(108,99,255,0.5);
-      --accent: #6c63ff;
-      --accent-dim: rgba(108,99,255,0.15);
-      --accent2: #00d2ff;
+      --border-hover: rgba(220,50,50,0.5);
+      --accent: #e04545;
+      --accent-dim: rgba(220,50,50,0.15);
+      --accent2: #ff7043;
       --text: #e2e8f0;
       --text-muted: #64748b;
       --text-subtle: #94a3b8;
-      --tag-bg: rgba(108,99,255,0.12);
-      --tag-text: #a59fff;
+      --tag-bg: rgba(220,50,50,0.12);
+      --tag-text: #f09090;
     }
 
     html { scroll-behavior: smooth; }
@@ -47,8 +47,8 @@
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(108,99,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(108,99,255,0.03) 1px, transparent 1px);
+        linear-gradient(rgba(220,50,50,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(220,50,50,0.03) 1px, transparent 1px);
       background-size: 40px 40px;
       pointer-events: none;
       z-index: 0;
@@ -63,7 +63,7 @@
       transform: translateX(-50%);
       width: 80vw;
       height: 60vh;
-      background: radial-gradient(ellipse, rgba(108,99,255,0.12) 0%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(220,50,50,0.12) 0%, transparent 70%);
       pointer-events: none;
       z-index: 0;
     }
@@ -132,7 +132,7 @@
       align-items: center;
       gap: 6px;
       background: var(--accent-dim);
-      border: 1px solid rgba(108,99,255,0.25);
+      border: 1px solid rgba(220,50,50,0.25);
       border-radius: 100px;
       padding: 4px 14px;
       font-size: 0.78rem;
@@ -203,12 +203,12 @@
     .btn-primary {
       background: var(--accent);
       color: #fff;
-      box-shadow: 0 0 24px rgba(108,99,255,0.35);
+      box-shadow: 0 0 24px rgba(220,50,50,0.35);
     }
 
     .btn-primary:hover {
-      background: #7c74ff;
-      box-shadow: 0 0 32px rgba(108,99,255,0.55);
+      background: #e85d5d;
+      box-shadow: 0 0 32px rgba(220,50,50,0.55);
       transform: translateY(-1px);
     }
 
@@ -277,8 +277,8 @@
       width: 100%;
       height: 240px;
       background:
-        radial-gradient(ellipse at 30% 50%, rgba(108,99,255,0.2), transparent 60%),
-        radial-gradient(ellipse at 75% 30%, rgba(0,210,255,0.1), transparent 50%),
+        radial-gradient(ellipse at 30% 50%, rgba(220,50,50,0.2), transparent 60%),
+        radial-gradient(ellipse at 75% 30%, rgba(255,112,67,0.1), transparent 50%),
         #080a0f;
       display: flex;
       align-items: center;
@@ -293,8 +293,8 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(108,99,255,0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(108,99,255,0.1) 1px, transparent 1px);
+        linear-gradient(rgba(220,50,50,0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(220,50,50,0.1) 1px, transparent 1px);
       background-size: 32px 32px;
     }
 
@@ -302,18 +302,18 @@
       position: relative;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.78rem;
-      color: rgba(108,99,255,0.6);
-      border: 1px solid rgba(108,99,255,0.2);
+      color: rgba(220,50,50,0.7);
+      border: 1px solid rgba(220,50,50,0.2);
       border-radius: 6px;
       padding: 6px 14px;
-      background: rgba(108,99,255,0.05);
+      background: rgba(220,50,50,0.05);
       backdrop-filter: blur(4px);
     }
 
     /* Fake gizmo geometry decoration */
     .project-preview .geo {
       position: absolute;
-      border: 1.5px solid rgba(108,99,255,0.35);
+      border: 1.5px solid rgba(220,50,50,0.35);
       border-radius: 3px;
       animation: float 5s ease-in-out infinite;
     }
@@ -333,7 +333,7 @@
       border: none;
       border-left: 26px solid transparent;
       border-right: 26px solid transparent;
-      border-bottom: 46px solid rgba(0,210,255,0.25);
+      border-bottom: 46px solid rgba(255,112,67,0.25);
       border-radius: 0;
       top: 30%;
       right: 28%;
@@ -344,7 +344,7 @@
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      border-color: rgba(0,210,255,0.2);
+      border-color: rgba(255,112,67,0.2);
       bottom: 20%;
       right: 18%;
       animation-delay: 3s;
@@ -407,7 +407,7 @@
       font-size: 0.73rem;
       background: var(--tag-bg);
       color: var(--tag-text);
-      border: 1px solid rgba(108,99,255,0.18);
+      border: 1px solid rgba(220,50,50,0.18);
       border-radius: 6px;
       padding: 3px 10px;
     }
@@ -459,7 +459,7 @@
     }
 
     .skill-card:hover {
-      border-color: rgba(108,99,255,0.3);
+      border-color: rgba(220,50,50,0.3);
     }
 
     .skill-card h3 {
