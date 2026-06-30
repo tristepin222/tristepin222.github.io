@@ -455,6 +455,110 @@
       margin-left: 10px;
       vertical-align: middle;
     }
+
+    /* ── Media gallery ── */
+    .media-section {
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,0,0,0.3);
+      padding: 48px 0;
+    }
+
+    .media-section .container { position: relative; z-index: 1; }
+
+    .media-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 640px) {
+      .screenshots-grid { grid-template-columns: 1fr; }
+      .videos-grid { grid-template-columns: 1fr; }
+    }
+
+    .media-item {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #080a0f;
+      transition: border-color 0.25s;
+    }
+
+    .media-item:hover { border-color: rgba(220,50,50,0.35); }
+
+    .screenshot-wrap {
+      cursor: zoom-in;
+      display: block;
+      line-height: 0;
+    }
+
+    .screenshot-wrap img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.2s;
+    }
+
+    .screenshot-wrap:hover img { opacity: 0.88; }
+
+    .media-caption {
+      padding: 10px 14px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      border-top: 1px solid var(--border);
+    }
+
+    .videos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .video-wrap {
+      line-height: 0;
+    }
+
+    .video-wrap video {
+      width: 100%;
+      display: block;
+      border-radius: 0;
+      max-height: 220px;
+      object-fit: cover;
+    }
+
+    /* ── Lightbox ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(0,0,0,0.88);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 88vh;
+      border-radius: 8px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+      border: 1px solid var(--border);
+    }
   </style>
 </head>
 <body>
@@ -482,6 +586,60 @@
       <div class="eyebrow">Personal Project · 2024–2025</div>
       <h1>C++ <span>Vulkan</span> Game Engine</h1>
     </div>
+  </div>
+
+  <!-- Media gallery -->
+  <div class="media-section">
+    <div class="container">
+
+      <div class="media-label">// screenshots</div>
+      <div class="screenshots-grid">
+
+        <div class="media-item">
+          <a class="screenshot-wrap" href="#" onclick="openLightbox('media/engine/ScreenShots/DefaultScene.png'); return false;">
+            <img src="media/engine/ScreenShots/DefaultScene.png" alt="Default scene with grid, triangle and cube" loading="lazy" />
+          </a>
+          <div class="media-caption">Default scene on startup</div>
+        </div>
+
+        <div class="media-item">
+          <a class="screenshot-wrap" href="#" onclick="openLightbox('media/engine/ScreenShots/AfterEditingObjects.png'); return false;">
+            <img src="media/engine/ScreenShots/AfterEditingObjects.png" alt="Object selected in editor with transform gizmo visible" loading="lazy" />
+          </a>
+          <div class="media-caption">Cube selected, inspector and gizmo active</div>
+        </div>
+
+      </div>
+
+      <div class="media-label">// videos</div>
+      <div class="videos-grid">
+
+        <div class="media-item">
+          <div class="video-wrap">
+            <video controls preload="metadata" aria-label="Moving the camera in fly mode">
+              <source src="media/engine/Videos/MovingTheCamera.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="media-caption">Camera movement (fly mode)</div>
+        </div>
+
+        <div class="media-item">
+          <div class="video-wrap">
+            <video controls preload="metadata" aria-label="Moving, rotating, creating, scaling and deleting objects">
+              <source src="media/engine/Videos/MovingRotatingCreatingScalingDeleting.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="media-caption">Move, rotate, scale, duplicate and delete objects</div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="" />
   </div>
 
   <!-- Page body -->
@@ -760,6 +918,25 @@
       </p>
     </div>
   </footer>
+
+  <script>
+    function openLightbox(src) {
+      var lb = document.getElementById('lightbox');
+      var img = document.getElementById('lightbox-img');
+      img.src = src;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
 
 </body>
 </html>
