@@ -1,0 +1,57 @@
+/* ============================================================
+   touhou.css — styles specific to touhou.html
+   ============================================================ */
+
+/* ── Hero banner (photo) ── */
+.hero-banner {
+  width: 100%;
+  height: 340px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.45);
+  display: block;
+}
+
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,12,16,0.85) 0%, transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 36px 40px;
+}
+
+/* ── Steam badge ── */
+.steam-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--green-dim);
+  border: 1px solid rgba(34,197,94,0.25);
+  border-radius: 100px;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--green);
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 12px;
+}
+
+.steam-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green);
+}
+
+/* Sidebar btn full-width on sub-pages */
+.sidebar .btn { width: 100%; }

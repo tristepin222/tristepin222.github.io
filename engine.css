@@ -1,0 +1,195 @@
+/* ============================================================
+   engine.css — styles specific to engine.html
+   ============================================================ */
+
+/* ── Hero banner (animated geometry) ── */
+.hero-banner {
+  width: 100%;
+  height: 340px;
+  background:
+    radial-gradient(ellipse at 20% 60%, rgba(220,50,50,0.22), transparent 55%),
+    radial-gradient(ellipse at 80% 30%, rgba(255,112,67,0.12), transparent 50%),
+    #080a0f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(220,50,50,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(220,50,50,0.07) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+.banner-label { position: relative; text-align: center; }
+
+/* ── Decorative floating shapes ── */
+.shape { position: absolute; animation: floatShape 6s ease-in-out infinite; }
+
+.shape-cube {
+  width: 72px; height: 72px;
+  border: 1.5px solid rgba(220,50,50,0.4);
+  border-radius: 4px;
+  top: 28%; left: 15%;
+  transform: rotate(18deg);
+  animation-delay: 0s;
+}
+
+.shape-tri {
+  width: 0; height: 0;
+  border-left: 32px solid transparent;
+  border-right: 32px solid transparent;
+  border-bottom: 55px solid rgba(255,112,67,0.22);
+  top: 22%; right: 18%;
+  animation-delay: 2s;
+}
+
+.shape-ring {
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,112,67,0.25);
+  bottom: 18%; right: 32%;
+  animation-delay: 1s;
+}
+
+.shape-small-cube {
+  width: 38px; height: 38px;
+  border: 1px solid rgba(220,50,50,0.25);
+  border-radius: 3px;
+  top: 55%; left: 38%;
+  transform: rotate(-30deg);
+  animation-delay: 3.5s;
+}
+
+@keyframes floatShape {
+  0%, 100% { transform: translateY(0) rotate(18deg); }
+  50%       { transform: translateY(-12px) rotate(22deg); }
+}
+
+.shape-tri   { animation-name: floatShapeTri; }
+.shape-ring  { animation-name: floatShapeSimple; }
+.shape-small-cube { animation-name: floatShapeSmall; }
+
+@keyframes floatShapeTri {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes floatShapeSimple {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-8px) scale(1.04); }
+}
+
+@keyframes floatShapeSmall {
+  0%, 100% { transform: translateY(0) rotate(-30deg); }
+  50%       { transform: translateY(-14px) rotate(-26deg); }
+}
+
+/* ── Media gallery ── */
+.media-section {
+  border-bottom: 1px solid var(--border);
+  background: rgba(0,0,0,0.3);
+  padding: 48px 0;
+}
+
+.media-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.screenshots-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 640px) {
+  .screenshots-grid { grid-template-columns: 1fr; }
+  .videos-grid      { grid-template-columns: 1fr; }
+}
+
+.media-item {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #080a0f;
+  transition: border-color 0.25s;
+}
+
+.media-item:hover { border-color: rgba(220,50,50,0.35); }
+
+.screenshot-wrap {
+  cursor: zoom-in;
+  display: block;
+  line-height: 0;
+}
+
+.screenshot-wrap img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.2s;
+}
+
+.screenshot-wrap:hover img { opacity: 0.88; }
+
+.media-caption {
+  padding: 10px 14px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  border-top: 1px solid var(--border);
+}
+
+.videos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.video-wrap { line-height: 0; }
+
+.video-wrap video {
+  width: 100%;
+  display: block;
+  max-height: 220px;
+  object-fit: cover;
+}
+
+/* ── Lightbox ── */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(0,0,0,0.88);
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+
+.lightbox.open { display: flex; }
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 88vh;
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+  border: 1px solid var(--border);
+}
+
+/* Sidebar btn full-width on sub-pages */
+.sidebar .btn { width: 100%; }
