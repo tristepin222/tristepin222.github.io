@@ -28,12 +28,31 @@
 
   <!-- Hero Banner -->
   <div class="hero-banner">
-    <img src="Media/Forge/compilation_pipeline.png" alt="Forge Compiler architecture banner" />
+    <img src="Media/Forge/preview.png" alt="Forge Compiler architecture banner" />
     <div class="banner-overlay">
       <div class="banner-label">
         <div class="eyebrow">Assembly · Systems · 2025</div>
         <h1>Forge <span>Compiler</span></h1>
       </div>
+    </div>
+  </div>
+
+  <!-- Media gallery -->
+  <div class="media-section">
+    <div class="container">
+
+      <div class="media-label">// pipeline diagrams</div>
+      <div class="screenshots-grid" style="grid-template-columns: 1fr;">
+
+        <div class="media-item">
+          <a class="screenshot-wrap" href="#" onclick="openLightbox('Media/Forge/compilation_pipeline.png'); return false;">
+            <img src="Media/Forge/compilation_pipeline.png" alt="Imperium Compiler Bootstrap Pipeline" style="max-height: 400px; object-fit: contain; background: #080a0f;" loading="lazy" />
+          </a>
+          <div class="media-caption">Imperium compiler multi-stage bootstrapping pipeline flow</div>
+        </div>
+
+      </div>
+
     </div>
   </div>
 
@@ -306,6 +325,30 @@
       <p><a href="index.html">← tristepin222.github.io</a></p>
     </div>
   </footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Pipeline diagram preview" />
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      var lb = document.getElementById('lightbox');
+      var img = document.getElementById('lightbox-img');
+      img.src = src;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
 
 </body>
 </html>
