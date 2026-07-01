@@ -64,31 +64,30 @@
         <!-- Main content -->
         <div class="prose">
 
-          <!-- Overview -->
+          <!-- Motivation -->
           <section>
-            <div class="section-label">// overview</div>
-            <h2>About the compiler</h2>
+            <div class="section-label">// motivation</div>
+            <h2>Why I built this</h2>
             <p>
-              Forge is a minimal, self-contained bootstrap compiler written from scratch in
-              <strong>x86-64 NASM assembly</strong> for Linux. It is designed to act as the Stage 0 foundation,
-              compiling the core compiler for a high-level language called <strong>Imperium</strong>.
+              I built Forge to explore the absolute fundamentals of software construction and bootstrapping.
+              By writing Stage 0 entirely in x86-64 assembly, I wanted to understand how compiler infrastructures
+              can be established without relying on pre-existing compilers.
             </p>
             <p>
-              By writing Stage 0 in pure assembly, the project avoids any dependencies on external high-level compilers,
-              establishing a clean, bottom-up bootstrapping pipeline. The compiler targets the native Linux ABI,
-              handling register allocation, memory layout, and system calls directly to generate standalone executables.
+              Designing the bootstrapping sequence and writing code generators targeting the direct hardware instruction set
+              provided a solid foundation in low-level systems architecture and execution mechanics.
             </p>
           </section>
 
           <hr class="divider" />
 
-          <!-- Bootstrapping Pipeline -->
+          <!-- Concept -->
           <section>
-            <div class="section-label">// bootstrapping pipeline</div>
-            <h2>Bootstrapping stages</h2>
+            <div class="section-label">// concept</div>
+            <h2>What it is</h2>
             <p>
-              Forge achieves self-hosting by compiling subsequent generations of its own compiler source code through
-              multiple distinct language tiers:
+              Forge is a multi-tier bootstrapping compiler. It translates Imperium, a structured, type-safe systems
+              language, directly to Linux x86-64 assembly instructions:
             </p>
             <ul class="feature-list">
 
@@ -222,42 +221,62 @@
 
           <hr class="divider" />
 
-          <!-- Systems Testing & Verification -->
+          <!-- Challenges -->
           <section>
-            <div class="section-label">// verification</div>
-            <h2>Testing and validation</h2>
+            <div class="section-label">// challenges</div>
+            <h2>Key challenges</h2>
             <p>
-              Writing a bootstrapping compiler requires high reliability, as a single bug in the code generation
-              will corrupt subsequent builds. Forge features robust validation harnesses to prevent regressions:
+              The main obstacle was the bootstrap validation loop. A single code-generator bug compiles forward, corrupting
+              subsequent compiler binary generations hours later, which makes tracking down errors extremely difficult.
+              I resolved this by designing strict generation-to-generation output comparisons and compiling modular self-host segments.
             </p>
             <p>
-              <strong>Automated regression suites</strong> compile and run test files, comparing execution outputs
-              against expected baselines. <strong>Self-host scaffold verification</strong> splits compile checks into
-              smaller segments, helping pinpoint bugs in parser or lexer layers.
-            </p>
-            <p>
-              <strong>Performance benchmarking</strong> measures timings for warm builds, tracking compiler latency
-              and writing detailed statistics to JSON outputs to verify code generation efficiency.
+              Another blocker was ensuring full compliance with the System V AMD64 ABI calling conventions. Passing arguments in specific registers,
+              preserving required states, and maintaining 16-byte stack alignment boundaries for external library calls required mapping functions
+              exactly to hardware assembly templates.
             </p>
           </section>
 
           <hr class="divider" />
 
-          <!-- Retrospective -->
+          <!-- Architecture -->
           <section>
-            <div class="section-label">// retrospective</div>
-            <h2>Key lessons</h2>
+            <div class="section-label">// architecture</div>
+            <h2>How it works</h2>
             <p>
-              Building a compiler in assembly forces a deep understanding of low-level systems architecture:
+              The compiler translates Imperium code through structured compiler stages:
             </p>
             <p>
-              Mapping variables and expressions to physical CPU registers and stack frames teaches optimal
-              memory management. Supporting the System V ABI requires matching call frames, parameter registers,
-              and alignment boundaries exactly to safely interface with standard libraries.
+              <strong>Lexical Analysis &amp; Parsing</strong> process source characters into tokens, assembling them into
+              an Abstract Syntax Tree (AST). <strong>Type Checking &amp; Mutability verification</strong> validate syntax structures,
+              constant rules, and type layouts. <strong>Code Generation</strong> emits low-level NASM assembly instructions mapping structures
+              and functions to hardware registers.
             </p>
             <p>
-              Developing the bootstrapping pipeline also shows the value of strong diagnostic logging and test validation
-              when tracking down compiler bugs that span multiple generations of generated binaries.
+              <strong>Regression tests and validation checks</strong> verify that code compilation is correct.
+              Timings are checked against a performance warm baseline via benchmarking suites writing out to JSON logs.
+            </p>
+          </section>
+
+          <hr class="divider" />
+
+          <!-- Improvements -->
+          <section>
+            <div class="section-label">// improvements</div>
+            <h2>Future improvements</h2>
+            <p>
+              Currently, register assignment is simple and stack-heavy. I plan to implement a graph-coloring register allocation algorithm
+              to optimize register reuse and reduce CPU memory transactions.
+            </p>
+            <p>
+              I would also like to enhance parsing diagnosis. Providing detailed compiler error highlights with source file coordinates,
+              line displays, and correction hints would improve the development workflow.
+            </p>
+            <p>
+              Detailed post-mortem analysis and the bootstrap script pipeline files are documented in the
+              <a href="https://github.com/tristepin222/Forge" target="_blank" rel="noopener" style="color:var(--accent)">
+                repository README
+              </a>.
             </p>
           </section>
 

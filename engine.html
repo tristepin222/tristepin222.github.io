@@ -100,34 +100,38 @@
         <!-- Main content -->
         <div class="prose">
 
-          <!-- Overview -->
+          <!-- Motivation -->
           <section>
-            <div class="section-label">// overview</div>
-            <h2>About this project</h2>
+            <div class="section-label">// motivation</div>
+            <h2>Why I built this</h2>
             <p>
-              This is a <strong>custom game engine built entirely from scratch</strong>, with no existing engine
-              underneath it. I started it to understand how engines like Unity or Unreal actually work internally,
-              by writing each part myself.
+              I started this project to understand the low-level architecture beneath modern game engines,
+              rather than simply scripting on top of existing commercial platforms. Building a game engine
+              from scratch forces you to address core hardware interactions directly.
             </p>
             <p>
-              It covers what a real engine needs: rendering 3D objects, an interactive editor to place and adjust
-              them, the ability to save and reload a scene, and a clean structure for writing game logic on top of it.
+              By writing my own renderer, memory allocations, scene management, and tooling interface,
+              I gained a deep appreciation for the trade-offs involved in real-time systems design. It serves
+              as a playground to study performance limits, cache locality, and graphics API pipelines.
             </p>
             <div class="callout">
               <p>
-                I chose to build an engine rather than just a game because I wanted to understand the tooling,
-                not just use it. Working at this level requires strong fundamentals in systems programming,
-                memory management, and API design.
+                Working at this level requires strong fundamentals in C++ memory management, systems design,
+                and direct GPU programming, shifting the focus from using tools to building them.
               </p>
             </div>
           </section>
 
           <hr class="divider" />
 
-          <!-- Features -->
+          <!-- Concept -->
           <section>
-            <div class="section-label">// what it does</div>
-            <h2>Key features</h2>
+            <div class="section-label">// concept</div>
+            <h2>What it is</h2>
+            <p>
+              The prototype is a fully functioning, two-project visual development workspace that splits
+              engine runtime systems from client sandbox logic:
+            </p>
             <ul class="feature-list">
 
               <li class="feature-item">
@@ -274,24 +278,42 @@
 
           <!-- Challenges -->
           <section>
-            <div class="section-label">// challenges &amp; learnings</div>
-            <h2>Challenges and takeaways</h2>
+            <div class="section-label">// challenges</div>
+            <h2>Key challenges</h2>
             <p>
-              Working at this level means there are no helpful error messages. When something is wrong with the
-              rendering setup, the screen is just black. Debugging involves reading GPU validation output,
-              tracing memory layout issues, and reasoning carefully about code that runs on hardware you
-              cannot step through directly.
+              Vulkan is an extremely explicit graphics API. Unlike higher-level libraries, it offers zero safety fallback
+              at runtime: if a pipeline barrier, swapchain transition, or descriptor binding contains a single misalignment, the
+              GPU fails silently with a blank screen. Overcoming this involved writing robust debug logging integrations using
+              Vulkan validation layers and structuring diagnostic render passes to isolate pipeline states.
             </p>
             <p>
-              The main architectural challenge was <strong>keeping systems decoupled from each other</strong>.
-              The scene serializer, for example, originally needed to be updated every time a new object type
-              was added. I redesigned it as a <strong>registry</strong> where object types register their own
-              save and load logic, so the engine core never needs to change.
+              Another significant obstacle was handling real-time viewport raycasting. Clicking an entity in the viewport
+              requires transforming 2D screen coordinates back through the inverse camera projection and view matrices,
+              projecting a 3D ray into the scene, and evaluating bounding volume intersections. Resolving this required
+              robust linear algebra structures and caching bounding shapes to maintain editor performance.
+            </p>
+          </section>
+
+          <hr class="divider" />
+
+          <!-- Architecture -->
+          <section>
+            <div class="section-label">// architecture</div>
+            <h2>How it works</h2>
+            <p>
+              The project is structured around a modular static library model. The engine compiles into a standalone C++ library,
+              which the sandbox game links against. This isolates the core engine runtime (rendering pipelines, GLFW window,
+              input processing) from the game-specific logic.
             </p>
             <p>
-              Overall this project pushed me to think carefully about <strong>interface design and system
-              boundaries</strong>. Getting those right early saves significant rework later, and getting
-              them wrong is immediately felt.
+              At the core is a custom <strong>Entity Component System (ECS)</strong>. Instead of using heavy object inheritance hierarchies,
+              game entities are lightweight identifiers, and their data is stored in contiguous memory blocks (component pools).
+              This data-oriented design optimizes CPU cache utilization during physics, rendering, and script update passes.
+            </p>
+            <p>
+              The visual editor relies on <strong>Dear ImGui</strong>, binding Vulkan texture descriptors to draw the rendered viewport
+              directly inside ImGui window panels. Entity selection updates the inspector view dynamically, allowing real-time modification of
+              component data structures serialized to JSON formatting.
             </p>
           </section>
 
