@@ -1,0 +1,32 @@
+/* ============================================================
+   forge.css — styles specific to forge.html
+   ============================================================ */
+
+/* ── Hero banner (photo) ── */
+.hero-banner {
+  width: 100%;
+  height: 340px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.45);
+  display: block;
+}
+
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,12,16,0.85) 0%, transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 36px 40px;
+}
+
+/* Sidebar btn full-width on sub-pages */
+.sidebar .btn { width: 100%; }

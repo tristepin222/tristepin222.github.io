@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forge Compiler Bootstrap — Tristepin222</title>
+  <meta name="description" content="Forge is a minimal, self-contained bootstrap compiler written in x86-64 NASM for Linux, compiling the Imperium language." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="forge.css" />
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="inner">
+      <a class="nav-logo" href="index.html">tristepin222</a>
+      <a class="nav-back" href="index.html">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M10 12L6 8l4-4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to portfolio
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Banner -->
+  <div class="hero-banner">
+    <img src="Media/Forge/preview.png" alt="Forge Compiler architecture banner" />
+    <div class="banner-overlay">
+      <div class="banner-label">
+        <div class="eyebrow">Assembly · Systems · 2025</div>
+        <h1>Forge <span>Compiler</span></h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page body -->
+  <div class="page-body">
+    <div class="container">
+      <div class="layout">
+
+        <!-- Main content -->
+        <div class="prose">
+
+          <!-- Overview -->
+          <section>
+            <div class="section-label">// overview</div>
+            <h2>About the compiler</h2>
+            <p>
+              Forge is a minimal, self-contained bootstrap compiler written from scratch in
+              <strong>x86-64 NASM assembly</strong> for Linux. It is designed to act as the Stage 0 foundation,
+              compiling the core compiler for a high-level language called <strong>Imperium</strong>.
+            </p>
+            <p>
+              By writing Stage 0 in pure assembly, the project avoids any dependencies on external high-level compilers,
+              establishing a clean, bottom-up bootstrapping pipeline. The compiler targets the native Linux ABI,
+              handling register allocation, memory layout, and system calls directly to generate standalone executables.
+            </p>
+          </section>
+
+          <hr class="divider" />
+
+          <!-- Bootstrapping Pipeline -->
+          <section>
+            <div class="section-label">// bootstrapping pipeline</div>
+            <h2>Bootstrapping stages</h2>
+            <p>
+              Forge achieves self-hosting by compiling subsequent generations of its own compiler source code through
+              multiple distinct language tiers:
+            </p>
+            <ul class="feature-list">
+
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <span style="font-family:'JetBrains Mono',monospace;font-size:0.8rem;font-weight:700;">S0</span>
+                </div>
+                <div>
+                  <div class="feature-title">Stage 0 (Assembly Bootstrap)</div>
+                  <div class="feature-desc">
+                    Written in pure x86-64 assembly. It compiles the first compiler written in the Imperium bootstrap subset, producing the initial executable.
+                  </div>
+                </div>
+              </li>
+
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <span style="font-family:'JetBrains Mono',monospace;font-size:0.8rem;font-weight:700;">S1</span>
+                </div>
+                <div>
+                  <div class="feature-title">Stage 1 &amp; 2 (Bootstrap Language)</div>
+                  <div class="feature-desc">
+                    The Stage 0 compiler builds the Stage 1 compiler binary. The Stage 1 binary then compiles the Stage 2 source code to produce the Stage 2 compiler. Parity checks are run to ensure outputs match exactly across generations.
+                  </div>
+                </div>
+              </li>
+
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <span style="font-family:'JetBrains Mono',monospace;font-size:0.8rem;font-weight:700;">S3</span>
+                </div>
+                <div>
+                  <div class="feature-title">Stage 3 (Extended Language)</div>
+                  <div class="feature-desc">
+                    The trusted Stage 2 compiler compiles the Stage 3 source code, introducing advanced syntax definitions, structural data models, and checking features.
+                  </div>
+                </div>
+              </li>
+
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <span style="font-family:'JetBrains Mono',monospace;font-size:0.8rem;font-weight:700;">SH</span>
+                </div>
+                <div>
+                  <div class="feature-title">Stage 3 Self-Hosting</div>
+                  <div class="feature-desc">
+                    The Stage 3 compiler compiles the full, bundled Imperium self-host codebase. This creates a compiler completely written in Imperium that is capable of building itself.
+                  </div>
+                </div>
+              </li>
+
+            </ul>
+          </section>
+
+          <hr class="divider" />
+
+          <!-- Language Specifications -->
+          <section>
+            <div class="section-label">// language features</div>
+            <h2>The Imperium language</h2>
+            <p>
+              The language compiled by Forge evolves across the stages, ultimately supporting a structured, type-safe programming model:
+            </p>
+            <ul class="feature-list">
+
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"/>
+                    <polyline points="8 6 2 12 8 18"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="feature-title">Variables and mutability</div>
+                  <div class="feature-desc">
+                    Supports explicit value, constant, and variable declarations with compile-time mutability enforcement, preventing modifications to read-only assignments.
+                  </div>
+                </div>
+              </li>
+
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                    <polyline points="2 17 12 22 22 17"/>
+                    <polyline points="2 12 12 17 22 12"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="feature-title">Structures and enumerations</div>
+                  <div class="feature-desc">
+                    Supports user-defined structs with field accessors and enum variants, including enums with single payloads and pattern-matching match statements.
+                  </div>
+                </div>
+              </li>
+
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="feature-title">Control flow structures</div>
+                  <div class="feature-desc">
+                    Implements standard control flows including conditional statements, while loops, infinite loops with break checks, and exclusive-range for loops.
+                  </div>
+                </div>
+              </li>
+
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="feature-title">Object-oriented foundations</div>
+                  <div class="feature-desc">
+                    Parses classes, field layouts, and implementation blocks, compiling class methods and interface declarations into functional code.
+                  </div>
+                </div>
+              </li>
+
+            </ul>
+          </section>
+
+          <hr class="divider" />
+
+          <!-- Systems Testing & Verification -->
+          <section>
+            <div class="section-label">// verification</div>
+            <h2>Testing and validation</h2>
+            <p>
+              Writing a bootstrapping compiler requires high reliability, as a single bug in the code generation
+              will corrupt subsequent builds. Forge features robust validation harnesses to prevent regressions:
+            </p>
+            <p>
+              <strong>Automated regression suites</strong> compile and run test files, comparing execution outputs
+              against expected baselines. <strong>Self-host scaffold verification</strong> splits compile checks into
+              smaller segments, helping pinpoint bugs in parser or lexer layers.
+            </p>
+            <p>
+              <strong>Performance benchmarking</strong> measures timings for warm builds, tracking compiler latency
+              and writing detailed statistics to JSON outputs to verify code generation efficiency.
+            </p>
+          </section>
+
+          <hr class="divider" />
+
+          <!-- Retrospective -->
+          <section>
+            <div class="section-label">// retrospective</div>
+            <h2>Key lessons</h2>
+            <p>
+              Building a compiler in assembly forces a deep understanding of low-level systems architecture:
+            </p>
+            <p>
+              Mapping variables and expressions to physical CPU registers and stack frames teaches optimal
+              memory management. Supporting the System V ABI requires matching call frames, parameter registers,
+              and alignment boundaries exactly to safely interface with standard libraries.
+            </p>
+            <p>
+              Developing the bootstrapping pipeline also shows the value of strong diagnostic logging and test validation
+              when tracking down compiler bugs that span multiple generations of generated binaries.
+            </p>
+          </section>
+
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+          <div class="sidebar-card">
+            <h3>Project at a glance</h3>
+            <div class="sidebar-stat">
+              <span class="label">Status</span>
+              <span class="value green">Self-Hosting</span>
+            </div>
+            <div class="sidebar-stat">
+              <span class="label">Platform</span>
+              <span class="value">Linux (x86-64)</span>
+            </div>
+            <div class="sidebar-stat">
+              <span class="label">Architecture</span>
+              <span class="value">ELF64</span>
+            </div>
+            <div class="sidebar-stat">
+              <span class="label">Target ABI</span>
+              <span class="value">System V AMD64</span>
+            </div>
+            <div class="sidebar-stat">
+              <span class="label">Language</span>
+              <span class="value">x86-64 NASM</span>
+            </div>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>Technologies</h3>
+            <div class="tech-tags">
+              <span class="tag">Assembly</span>
+              <span class="tag">NASM</span>
+              <span class="tag">x86-64</span>
+              <span class="tag">Linux ABI</span>
+              <span class="tag">Syscalls</span>
+              <span class="tag">ELF64 Linker</span>
+            </div>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>Links</h3>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <a href="https://github.com/tristepin222/Forge"
+                 target="_blank" rel="noopener" class="btn btn-primary">
+                Source on GitHub
+              </a>
+              <a href="index.html" class="btn btn-ghost">← Back to portfolio</a>
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p><a href="index.html">← tristepin222.github.io</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>

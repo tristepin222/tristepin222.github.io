@@ -103,6 +103,46 @@
         </div>
       </div>
 
+      <!-- Forge Compiler Card -->
+      <div class="project-card" style="margin-top: 24px;">
+        <div class="project-preview" style="background: #0a0a0f;">
+          <img
+            src="Media/Forge/preview.png"
+            alt="Forge Compiler architecture diagram"
+            style="width:100%; height:100%; object-fit:cover; opacity:0.75;"
+          />
+        </div>
+        <div class="project-card-body">
+          <div class="project-meta">
+            <h3 class="project-title">Forge Compiler</h3>
+            <span class="status-badge" style="background:rgba(59,130,246,0.12);color:#60a5fa;border:1px solid rgba(59,130,246,0.2);">Self-Hosting Bootstrap</span>
+          </div>
+          <p class="project-desc">
+            A minimal, self-contained bootstrap compiler written in x86-64 NASM for Linux. It compiles a custom high-level programming language, bootstrapping itself from raw assembly code up to a self-hosting compiler.
+          </p>
+          <div class="tech-tags">
+            <span class="tag">Assembly (NASM)</span>
+            <span class="tag">x86-64 Linux ABI</span>
+            <span class="tag">Compiler Design</span>
+            <span class="tag">Self-Hosting</span>
+            <span class="tag">Language Bootstrap</span>
+          </div>
+          <ul class="project-highlights">
+            <li>Built a multi-stage bootstrap pipeline from raw x86-64 NASM assembly</li>
+            <li>Designed and coded the lexer, parser, code generator, and ABI mapping</li>
+            <li>Implements control flows, custom structures, enums with payload pattern matching, and classes</li>
+            <li>Generates standalone Linux binaries via native system calls and ELF64 linking</li>
+            <li>Features automated regression validation and performance benchmarking</li>
+          </ul>
+          <div class="project-links">
+            <a href="forge.html" class="btn btn-primary">Learn More</a>
+            <a href="https://github.com/tristepin222/Forge"
+               target="_blank" rel="noopener"
+               class="btn btn-ghost">View on GitHub</a>
+          </div>
+        </div>
+      </div>
+
       <!-- Touhou Adventure Card -->
       <div class="project-card" style="margin-top: 24px;">
         <div class="project-preview" style="background: #0a0a0f;">
