@@ -1,0 +1,116 @@
+/* ============================================================
+   ashes.css — styles specific to ashes.html
+   ============================================================ */
+
+/* ── Hero banner (photo) ── */
+.hero-banner {
+  width: 100%;
+  height: 340px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.45);
+  display: block;
+}
+
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,12,16,0.85) 0%, transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 36px 40px;
+}
+
+/* Sidebar btn full-width on sub-pages */
+.sidebar .btn { width: 100%; }
+
+/* ── Media gallery ── */
+.media-section {
+  border-bottom: 1px solid var(--border);
+  background: rgba(0,0,0,0.3);
+  padding: 48px 0;
+}
+
+.media-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.screenshots-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 640px) {
+  .screenshots-grid { grid-template-columns: 1fr; }
+  .videos-grid      { grid-template-columns: 1fr; }
+}
+
+.media-item {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #080a0f;
+  transition: border-color 0.25s;
+}
+
+.media-item:hover { border-color: rgba(220,50,50,0.35); }
+
+.screenshot-wrap {
+  cursor: zoom-in;
+  display: block;
+  line-height: 0;
+}
+
+.screenshot-wrap img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.2s;
+}
+
+.screenshot-wrap:hover img { opacity: 0.88; }
+
+.media-caption {
+  padding: 10px 14px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Lightbox ── */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(0,0,0,0.88);
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+
+.lightbox.open { display: flex; }
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 88vh;
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.7);
+  border: 1px solid var(--border);
+}

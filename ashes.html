@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crown of Ashes — Tristepin222</title>
+  <meta name="description" content="Crown of Ashes is a space exploration RPG in Unreal Engine 5.3+ featuring a multi-layered C++ procedural universe simulation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="ashes.css" />
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="inner">
+      <a class="nav-logo" href="index.html">tristepin222</a>
+      <a class="nav-back" href="index.html">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M10 12L6 8l4-4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to portfolio
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Banner -->
+  <div class="hero-banner">
+    <img src="Media/Ashes/universe_generation.png" alt="Crown of Ashes universe screenshot" />
+    <div class="banner-overlay">
+      <div class="banner-label">
+        <div class="eyebrow">Unreal Engine 5 · C++ · 2026</div>
+        <h1>Crown of <span>Ashes</span></h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- Media gallery -->
+  <div class="media-section">
+    <div class="container">
+      <div class="media-label">// system simulation</div>
+      <div class="screenshots-grid" style="grid-template-columns: 1fr;">
+        <div class="media-item">
+          <a class="screenshot-wrap" href="#" onclick="openLightbox('Media/Ashes/universe_generation.png'); return false;">
+            <img src="Media/Ashes/universe_generation.png" alt="Procedural planetary terrain in Crown of Ashes" style="max-height: 480px; object-fit: cover;" loading="lazy" />
+          </a>
+          <div class="media-caption">Real-time procedural planetary terrain and atmosphere rendering in Unreal Engine 5</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page body -->
+  <div class="page-body">
+    <div class="container">
+      <div class="layout">
+
+        <!-- Main content -->
+        <div class="prose">
+
+          <!-- Motivation -->
+          <section>
+            <div class="section-label">// motivation</div>
+            <h2>Why I built this</h2>
+            <p>
+              I started Crown of Ashes to explore the math and architecture behind large-scale procedural games.
+              Building a system that seamlessly transitions from star system orbital simulations down to individual planetary landing terrains
+              presents a massive set of challenges in coordinate precision, multi-threaded calculations, and procedural asset instantiation.
+            </p>
+            <p>
+              By decoupling physical universe generation laws from runtime Unreal components, the project simulates physical constants, orbital tracking, and biological genotypes deterministically based on seed values.
+            </p>
+          </section>
+
+          <hr class="divider" />
+
+          <!-- Architecture -->
+          <section>
+            <div class="section-label">// modular architecture</div>
+            <h2>Module breakdown</h2>
+            <p>
+              The codebase is split into dedicated modules to separate high-level gameplay systems from lower-level astronomical math and rendering adapters:
+            </p>
+            <ul class="feature-list">
+
+              <li class="feature-item">
+                <div class="feature-icon">AG</div>
+                <div>
+                  <div class="feature-title">ImperiumAstroGenesis (Astrophysics Core)</div>
+                  <div class="feature-desc">
+                    A pure C++ math module that seeds multiverse physical constants (gravity multiplier, molecular cohesion, strong force peak), star classifications (mass, temperature, spectra), binary stellar configurations, Keplerian planetary orbits, and biological genotype profiles for dynamic ecology.
+                  </div>
+                </div>
+              </li>
+
+              <li class="feature-item">
+                <div class="feature-icon">ER</div>
+                <div>
+                  <div class="feature-title">ImperiumEcologyRuntime (Visual Adaptor)</div>
+                  <div class="feature-desc">
+                    Generates procedurally deformed terrain meshes, climate maps, and orbital visual rings. It maps physical laws directly to Unreal assets, scaling skeletal bones, dynamically adjusting clear coats/moss in Material Instance Dynamics, and tuning Control Rig foot stance width based on a planet's gravity.
+                  </div>
+                </div>
+              </li>
+
+              <li class="feature-item">
+                <div class="feature-icon">CO</div>
+                <div>
+                  <div class="feature-title">CrownOfAshes Game Module</div>
+                  <div class="feature-desc">
+                    Houses high-level gameplay systems (quests, dialogue, reputation). It features custom PCG (Procedural Content Generation) graph integration and Spawners that coordinate with the runtime ecology to instantiate specific base blueprint variants for simulated creatures.
+                  </div>
+                </div>
+              </li>
+
+            </ul>
+          </section>
+
+          <hr class="divider" />
+
+          <!-- Technical Details -->
+          <section>
+            <div class="section-label">// technical achievements</div>
+            <h2>Key engineering accomplishments</h2>
+            
+            <h3 style="font-size: 1.15rem; font-weight: 600; margin: 18px 0 8px; color: var(--text);">Keplerian Orbital Visualizer</h3>
+            <p>
+              Computes planetary orbital coordinates in real-time using Kepler's laws of planetary motion. The system draws orbital vectors based on inclination, eccentricity, and semi-major axes, maintaining exact deterministic paths for satellites and binary planets.
+            </p>
+
+            <h3 style="font-size: 1.15rem; font-weight: 600; margin: 18px 0 8px; color: var(--text);">Sliding Grid Treadmill</h3>
+            <p>
+              To solve floating-point precision issues when exploring infinite planetary surfaces, the world director manages a 3x3 sliding grid of procedural terrain chunks centered around the player. Chunks are dynamically repositioned and refreshed as the player crosses coordinate thresholds.
+            </p>
+
+            <h3 style="font-size: 1.15rem; font-weight: 600; margin: 18px 0 8px; color: var(--text);">Gravity-Driven Control Rig &amp; Morphs</h3>
+            <p>
+              Rather than using static meshes, spawned creatures dynamically adapt to local planetary constants. The Ecology Assembler scales skeletal bones (representing physical load under high gravity) and tunes animation parameters like leg placement interpolation speeds and stance widths in the Control Rig.
+            </p>
+          </section>
+
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+          <div class="sidebar-card">
+            <h3>Project at a glance</h3>
+            <div class="sidebar-stat">
+              <span class="label">Status</span>
+              <span class="value">In Progress</span>
+            </div>
+            <div class="sidebar-stat">
+              <span class="label">Engine</span>
+              <span class="value">Unreal Engine 5.3</span>
+            </div>
+            <div class="sidebar-stat">
+              <span class="label">Primary Language</span>
+              <span class="value">C++</span>
+            </div>
+            <div class="sidebar-stat">
+              <span class="label">Math Basis</span>
+              <span class="value">Keplerian Orbits</span>
+            </div>
+            <div class="sidebar-stat">
+              <span class="label">Physics</span>
+              <span class="value">Deterministic</span>
+            </div>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>Technologies</h3>
+            <div class="tech-tags">
+              <span class="tag">Unreal Engine 5</span>
+              <span class="tag">C++</span>
+              <span class="tag">PCG Graphs</span>
+              <span class="tag">Control Rig</span>
+              <span class="tag">Substrate Materials</span>
+              <span class="tag">Procedural Mesh</span>
+            </div>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>Links</h3>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <a href="https://github.com/tristepin222/CrownOfAshes"
+                 target="_blank" rel="noopener" class="btn btn-primary">
+                Source on GitHub
+              </a>
+              <a href="index.html" class="btn btn-ghost">← Back to portfolio</a>
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p><a href="index.html">← tristepin222.github.io</a></p>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Universe screenshot preview" />
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      var lb = document.getElementById('lightbox');
+      var img = document.getElementById('lightbox-img');
+      img.src = src;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
+</body>
+</html>
