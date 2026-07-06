@@ -107,12 +107,12 @@
             <p>
               I started this project to understand the low-level architecture beneath modern game engines,
               rather than simply scripting on top of existing commercial platforms. Building a game engine
-              from scratch forced me to address core hardware interactions directly.
+              from scratch forced me to address core hardware interactions and strict memory boundaries directly.
             </p>
             <p>
-              By writing my own renderer, memory allocations, scene management, and tooling interface,
+              By writing my own renderer, custom memory pools, scene management, and tooling interface,
               I gained a deep appreciation for the trade-offs involved in real-time systems design. It serves
-              as a playground to study performance limits, cache locality, and graphics API pipelines.
+              as a playground to study performance limits, Data-Oriented Design (DOD), cache locality, and graphics API pipelines.
             </p>
             <div class="callout">
               <p>
@@ -397,12 +397,12 @@
             <p>
               The project is structured around a modular static library model. The engine compiles into a standalone C++ library,
               which the sandbox game links against. This isolates the core engine runtime (rendering pipelines, GLFW window,
-              input processing) from the game-specific logic.
+              input processing) from the game-specific logic. This runtime-sandbox isolation creates a clean, frictionless iteration cycle for developers. The visual editor embeds <strong>Dear ImGui</strong> directly via Vulkan descriptors, drawing the rendered scene viewport into ImGui panels to provide an integrated workspace for content creators.
             </p>
             <p>
-              At the core is a custom <strong>Entity Component System (ECS)</strong>. Instead of using heavy object inheritance hierarchies,
-              game entities are lightweight identifiers, and their data is stored in contiguous memory blocks (component pools).
-              This data-oriented design optimizes CPU cache utilization during physics, rendering, and script update passes.
+              At the core is a custom <strong>Entity Component System (ECS)</strong> implementing <strong>Data-Oriented Design (DOD)</strong>. 
+              Instead of using heavy, pointer-chasing object inheritance hierarchies, game entities are lightweight identifiers, and their data is stored in contiguous, type-specific memory blocks (component pools).
+              This data-oriented design optimizes CPU cache utilization by ensuring that tight loop passes during physics, rendering, and skeletal updates achieve near-perfect L1/L2 cache locality, preventing CPU pipeline stalls due to cache misses.
             </p>
             <p>
               The visual editor relies on <strong>Dear ImGui</strong>, binding Vulkan texture descriptors to draw the rendered viewport
@@ -410,9 +410,7 @@
               component data structures serialized to JSON formatting.
             </p>
             <p>
-              The <strong>Job System</strong> manages a thread pool containing $N-1$ workers. When heavy loops are processed (like skeletal
-              skinning updates), the thread partitions the loop into chunks and pushes them to a FIFO queue. Workers execute these chunks,
-              allowing joint calculations to be distributed across CPU cores.
+              The <strong>Job System</strong> manages a thread pool containing $N-1$ workers. To minimize heap manager overhead during the runtime frame loop, the system avoids dynamic allocations. Tasks are pushed to the thread-safe queue as lightweight lambdas capturing bounds by reference, fitting entirely within the small buffer optimization (SBO) of <code>std::function</code>. When heavy loops are processed (like skeletal skinning and collision updates), the main thread partitions the iteration space into chunks, enqueuing them without triggering the system heap. Workers execute these chunks, distributing joint and physics calculations across CPU cores.
             </p>
             <p>
               Skeletal meshes deformation is calculated in the GPU vertex shader. Bone indices and weights are carried by the vertex buffer
