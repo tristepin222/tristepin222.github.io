@@ -358,33 +358,16 @@
             <div class="section-label">// challenges</div>
             <h2>Key challenges</h2>
             <p>
-              Vulkan is an extremely explicit graphics API. Unlike higher-level libraries, it offers zero safety fallback
-              at runtime: if a pipeline barrier, swapchain transition, or descriptor binding contains a single misalignment, the
-              GPU fails silently with a blank screen. Overcoming this involved writing robust debug logging integrations using
-              Vulkan validation layers and structuring diagnostic render passes to isolate pipeline states.
+              <strong>Vulkan Verbosity &amp; Safety</strong>: Vulkan has zero runtime safety fallback. Overcoming silent black screens involved implementing validation layer diagnostics and structured render passes to isolate pipeline states.
             </p>
             <p>
-              Another significant obstacle was handling real-time viewport raycasting. Clicking an entity in the viewport
-              requires transforming 2D screen coordinates back through the inverse camera projection and view matrices,
-              projecting a 3D ray into the scene, and evaluating bounding volume intersections. Resolving this required
-              robust linear algebra structures and caching bounding shapes to maintain editor performance.
+              <strong>Racy Stack Allocations in Job System</strong>: Worker synchronization originally used stack-allocated primitives, leading to use-after-free corruption when the main thread exited early. This was resolved with a lock-free atomic chunk counter and cooperative spin-yielding (<code>std::this_thread::yield()</code>).
             </p>
             <p>
-              A major multi-threading challenge emerged during parallel loop scheduling in the Job System. Early versions used
-              stack-allocated condition variables on the main thread to coordinate worker threads. If the main thread finished waiting early,
-              the stack frame was deallocated, causing worker threads to trigger memory access violations when trying to signal the destroyed
-              primitive. I resolved this use-after-free bug by replacing stack-allocated synchronization with a lock-free, atomic counter
-              (`std::atomic<int>`) combined with cooperative spin-yielding (`std::this_thread::yield()`).
+              <strong>FBX Importing &amp; Curve Baking</strong>: Parsing split vertex attributes and Bezier keyframes was slow. This was solved by unrolling indices via a deduplicating vertex hash map and pre-baking animations into 30 FPS local transform arrays.
             </p>
             <p>
-              Handling FBX animations presented challenges due to split vertex attributes (e.g. UVs and normals mapped per-index) and complex,
-              layered Bezier keyframe curve math. I solved this by unrolling index layouts using a deduplicating vertex hash map and baking
-              animation curves into linear transform samples at a constant 30 FPS rate.
-            </p>
-            <p>
-              Lastly, OBB collision resolution required implementing the Separating Axis Theorem (SAT) across 15 candidate projection axes,
-              identifying the minimum penetration axis, and resolving rotational responses by transforming inverse inertia tensors to world space
-              to apply equal-and-opposite angular impulses at the contact point.
+              <strong>OBB Collision &amp; Rotational Impulses</strong>: Resolving oriented bounding box intersections required implementing Separating Axis Theorem (SAT) across 15 axes and transforming local inertia tensors to world space for realistic 3D torque/impulse response.
             </p>
           </section>
 
@@ -395,31 +378,16 @@
             <div class="section-label">// architecture</div>
             <h2>How it works</h2>
             <p>
-              The project is structured around a modular static library model. The engine compiles into a standalone C++ library,
-              which the sandbox game links against. This isolates the core engine runtime (rendering pipelines, GLFW window,
-              input processing) from the game-specific logic. This runtime-sandbox isolation creates a clean, frictionless iteration cycle for developers. The visual editor embeds <strong>Dear ImGui</strong> directly via Vulkan descriptors, drawing the rendered scene viewport into ImGui panels to provide an integrated workspace for content creators.
+              <strong>Engine / Sandbox Isolation</strong>: The core runtime compiles as a separate static library, completely decoupling core infrastructure from client game logic. A Dear ImGui visual editor binds to Vulkan texture descriptors to render the viewport directly into editor panels.
             </p>
             <p>
-              At the core is a custom <strong>Entity Component System (ECS)</strong> implementing <strong>Data-Oriented Design (DOD)</strong>. 
-              Instead of using heavy, pointer-chasing object inheritance hierarchies, game entities are lightweight identifiers, and their data is stored in contiguous, type-specific memory blocks (component pools).
-              This data-oriented design optimizes CPU cache utilization by ensuring that tight loop passes during physics, rendering, and skeletal updates achieve near-perfect L1/L2 cache locality, preventing CPU pipeline stalls due to cache misses.
+              <strong>Data-Oriented ECS</strong>: Components are stored contiguously in memory pools using the Swap-Remove pattern. By avoiding deep pointer-chasing inheritance, systems achieve optimal L1/L2 cache line locality.
             </p>
             <p>
-              The visual editor relies on <strong>Dear ImGui</strong>, binding Vulkan texture descriptors to draw the rendered viewport
-              directly inside ImGui window panels. Entity selection updates the inspector view dynamically, allowing real-time modification of
-              component data structures serialized to JSON formatting.
+              <strong>Task-Parallel Job System</strong>: Loop operations (skinning, physics) are partitioned into chunks and pushed to a lock-free thread pool queue, avoiding heap allocations via reference-capturing lambda SBO.
             </p>
             <p>
-              The <strong>Job System</strong> manages a thread pool containing $N-1$ workers. To minimize heap manager overhead during the runtime frame loop, the system avoids dynamic allocations. Tasks are pushed to the thread-safe queue as lightweight lambdas capturing bounds by reference, fitting entirely within the small buffer optimization (SBO) of <code>std::function</code>. When heavy loops are processed (like skeletal skinning and collision updates), the main thread partitions the iteration space into chunks, enqueuing them without triggering the system heap. Workers execute these chunks, distributing joint and physics calculations across CPU cores.
-            </p>
-            <p>
-              Skeletal meshes deformation is calculated in the GPU vertex shader. Bone indices and weights are carried by the vertex buffer
-              (`ivec4` and `vec4`), while joint offset matrices are bound as a descriptor uniform palette supporting up to 256 bones.
-            </p>
-            <p>
-              The <strong>Physics Engine</strong> operates in updates: it integrates gravity forces to update velocities and positions,
-              detects intersections using narrow-phase geometric checkers, estimates contact normals/points, and resolves collisions using
-              a 3D impulse solver.
+              <strong>GPU Skinning &amp; Physics</strong>: Skinned meshes deform in the vertex shader using a shared UBO joint palette. The narrow-phase physics engine integrates gravity, detects Sphere/AABB/OBB intersections, and applies rotational impulses.
             </p>
           </section>
 
