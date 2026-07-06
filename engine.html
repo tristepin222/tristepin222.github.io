@@ -271,6 +271,83 @@
                 </div>
               </li>
 
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <path d="M9 3v18"/>
+                    <path d="M15 3v18"/>
+                    <path d="M3 9h18"/>
+                    <path d="M3 15h18"/>
+                  </svg>
+                </div>
+                <div>
+                   <div class="feature-title">Multi-threaded job system</div>
+                   <div class="feature-desc">
+                     Distributes complex workload operations (like skeletal animations and physics updates)
+                     across CPU cores using a task-parallel job scheduler supporting dynamic index-chunk loop
+                     partitioning and lock-free yielding synchronization.
+                   </div>
+                </div>
+              </li>
+
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="5" r="3"/>
+                    <line x1="12" y1="8" x2="12" y2="15"/>
+                    <line x1="12" y1="15" x2="8" y2="21"/>
+                    <line x1="12" y1="15" x2="16" y2="21"/>
+                    <line x1="8" y1="11" x2="16" y2="11"/>
+                  </svg>
+                </div>
+                <div>
+                   <div class="feature-title">GPU skeletal skinning &amp; IK</div>
+                   <div class="feature-desc">
+                     Deforms vertices dynamically on the GPU using Linear Blend Skinning (LBS). Orientation paths are
+                     smoothly interpolated using spherical linear interpolation (SLERP), coordinated by Forward Kinematics,
+                     and adjusted dynamically using 2-bone and multi-joint FABRIK Inverse Kinematics (IK) solvers.
+                   </div>
+                </div>
+              </li>
+
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="9" y1="9" x2="15" y2="15"/>
+                    <circle cx="9" cy="9" r="1" fill="currentColor"/>
+                    <circle cx="15" cy="15" r="1" fill="currentColor"/>
+                  </svg>
+                </div>
+                <div>
+                   <div class="feature-title">3D rigid body physics &amp; SAT</div>
+                   <div class="feature-desc">
+                     Simulates physical dynamics with linear and angular integration, drag coefficients, and bounciness.
+                     Resolves multi-shape collisions (Sphere, AABB, OBB) using Separating Axis Theorem (SAT) projections
+                     and applies 3D rotational impulses to handle realistic bounces, tilts, and friction.
+                   </div>
+                </div>
+              </li>
+
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                  </svg>
+                </div>
+                <div>
+                   <div class="feature-title">Direct FBX asset loader</div>
+                   <div class="feature-desc">
+                     Integrates the ufbx library to natively import FBX Binary and ASCII assets at runtime.
+                     Automatically unrolls vertex index mappings, deduplicates vertex attributes, and bakes complex
+                     multi-curve animation data at 30 FPS into a compact runtime buffer.
+                   </div>
+                </div>
+              </li>
+
             </ul>
           </section>
 
@@ -291,6 +368,23 @@
               requires transforming 2D screen coordinates back through the inverse camera projection and view matrices,
               projecting a 3D ray into the scene, and evaluating bounding volume intersections. Resolving this required
               robust linear algebra structures and caching bounding shapes to maintain editor performance.
+            </p>
+            <p>
+              A major multi-threading challenge emerged during parallel loop scheduling in the Job System. Early versions used
+              stack-allocated condition variables on the main thread to coordinate worker threads. If the main thread finished waiting early,
+              the stack frame was deallocated, causing worker threads to trigger memory access violations when trying to signal the destroyed
+              primitive. I resolved this use-after-free bug by replacing stack-allocated synchronization with a lock-free, atomic counter
+              (`std::atomic<int>`) combined with cooperative spin-yielding (`std::this_thread::yield()`).
+            </p>
+            <p>
+              Handling FBX animations presented challenges due to split vertex attributes (e.g. UVs and normals mapped per-index) and complex,
+              layered Bezier keyframe curve math. I solved this by unrolling index layouts using a deduplicating vertex hash map and baking
+              animation curves into linear transform samples at a constant 30 FPS rate.
+            </p>
+            <p>
+              Lastly, OBB collision resolution required implementing the Separating Axis Theorem (SAT) across 15 candidate projection axes,
+              identifying the minimum penetration axis, and resolving rotational responses by transforming inverse inertia tensors to world space
+              to apply equal-and-opposite angular impulses at the contact point.
             </p>
           </section>
 
@@ -314,6 +408,20 @@
               The visual editor relies on <strong>Dear ImGui</strong>, binding Vulkan texture descriptors to draw the rendered viewport
               directly inside ImGui window panels. Entity selection updates the inspector view dynamically, allowing real-time modification of
               component data structures serialized to JSON formatting.
+            </p>
+            <p>
+              The <strong>Job System</strong> manages a thread pool containing $N-1$ workers. When heavy loops are processed (like skeletal
+              skinning updates), the thread partitions the loop into chunks and pushes them to a FIFO queue. Workers execute these chunks,
+              allowing joint calculations to be distributed across CPU cores.
+            </p>
+            <p>
+              Skeletal meshes deformation is calculated in the GPU vertex shader. Bone indices and weights are carried by the vertex buffer
+              (`ivec4` and `vec4`), while joint offset matrices are bound as a descriptor uniform palette supporting up to 256 bones.
+            </p>
+            <p>
+              The <strong>Physics Engine</strong> operates in updates: it integrates gravity forces to update velocities and positions,
+              detects intersections using narrow-phase geometric checkers, estimates contact normals/points, and resolves collisions using
+              a 3D impulse solver.
             </p>
           </section>
 

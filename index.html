@@ -67,31 +67,28 @@
             <span class="status-badge status-wip">In Progress</span>
           </div>
           <p class="project-desc">
-            A modular, data-oriented game engine prototype built entirely from scratch in C++20
-            using the Vulkan graphics API. Designed around a custom Entity Component System with
-            a clean two-project workspace: a reusable static library engine and a sandbox game
-            that consumes it, similar to how Unity separates runtime from editor scripting.
+            A modular, data-oriented game engine prototype built entirely from scratch in C++20 using the Vulkan graphics API. Designed around a custom Entity Component System (ECS), it features a multi-threaded job scheduler, skeletal animation with skinning, Inverse Kinematics (IK) solvers, and a 3D rigid body physics engine.
           </p>
           <div class="tech-tags">
             <span class="tag">C++20</span>
             <span class="tag">Vulkan</span>
-            <span class="tag">GLSL / SPIR-V</span>
             <span class="tag">ECS</span>
+            <span class="tag">Multi-threading</span>
+            <span class="tag">Skeletal Skinning</span>
+            <span class="tag">IK (FABRIK)</span>
+            <span class="tag">3D Physics (OBB SAT)</span>
+            <span class="tag">ufbx Loader</span>
             <span class="tag">Dear ImGui</span>
-            <span class="tag">ImGuizmo</span>
-            <span class="tag">GLFW</span>
-            <span class="tag">GLM</span>
-            <span class="tag">CMake</span>
           </div>
           <ul class="project-highlights">
-            <li>Custom ECS Registry (dense component storage)</li>
-            <li>Vulkan render loop &amp; push constants instancing</li>
-            <li>WYSIWYG ImGui editor with entity hierarchy</li>
-            <li>3D gizmos (translate / rotate / scale)</li>
-            <li>Raycast viewport picking (bounding-sphere)</li>
-            <li>Infinite procedural world grid shader</li>
-            <li>Generic component serialization registry</li>
-            <li>Automated shader compilation (glslc)</li>
+            <li>Designed a multi-threaded task scheduler (Job System) with parallel index chunk partitioning</li>
+            <li>Implemented GPU Linear Blend Skinning (LBS) with hierarchical joint-pose interpolation (LERP/SLERP)</li>
+            <li>Coded 2-bone analytical and multi-joint FABRIK Inverse Kinematics (IK) solvers</li>
+            <li>Created a 3D rigid body physics engine with linear/angular integration and rotational impulse solvers</li>
+            <li>Wrote multi-shape collision solvers supporting Sphere-Sphere, Sphere-AABB, and OBB-OBB Separating Axis Theorem (SAT)</li>
+            <li>Integrated ufbx library for native FBX Binary/ASCII asset importing and animation curve baking at runtime</li>
+            <li>Vulkan render loop using push constant dynamic instancing, descriptor sets, and double-buffered synchronization</li>
+            <li>WYSIWYG ImGui editor with 3D gizmos, scene serialization, and bounding-sphere raycast picking</li>
           </ul>
           <div class="project-links">
             <a href="engine.html" class="btn btn-primary">Learn More</a>
