@@ -302,12 +302,12 @@
                   </svg>
                 </div>
                 <div>
-                   <div class="feature-title">GPU skeletal skinning &amp; IK</div>
-                   <div class="feature-desc">
-                     Deforms vertices dynamically on the GPU using Linear Blend Skinning (LBS). Orientation paths are
-                     smoothly interpolated using spherical linear interpolation (SLERP), coordinated by Forward Kinematics,
-                     and adjusted dynamically using 2-bone and multi-joint FABRIK Inverse Kinematics (IK) solvers.
-                   </div>
+                    <div class="feature-title">GPU skeletal skinning &amp; blend spaces</div>
+                    <div class="feature-desc">
+                      Deforms vertices dynamically on the GPU using Linear Blend Skinning (LBS). Features spherical linear
+                      interpolation (SLERP), hierarchical Forward Kinematics, 1D &amp; 2D Freeform Cartesian blend space trees,
+                      direct WASD keyboard controller input binding, and 2-bone / FABRIK Inverse Kinematics (IK) solvers.
+                    </div>
                 </div>
               </li>
 
@@ -344,6 +344,40 @@
                      Integrates the ufbx library to natively import FBX Binary and ASCII assets at runtime.
                      Automatically unrolls vertex index mappings, deduplicates vertex attributes, and bakes complex
                      multi-curve animation data at 30 FPS into a compact runtime buffer.
+                   </div>
+                </div>
+              </li>
+
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"/>
+                    <polyline points="8 6 2 12 8 18"/>
+                  </svg>
+                </div>
+                <div>
+                   <div class="feature-title">Static reflection engine</div>
+                   <div class="feature-desc">
+                     Features a custom pre-processor and code generator (<code>reflection_generator</code>) that parses C++ annotations
+                     to generate component field layouts. This eliminates manual bindings, powering automatic JSON scene serialization
+                     and editor UI inspector panels.
+                   </div>
+                </div>
+              </li>
+
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                  </svg>
+                </div>
+                <div>
+                   <div class="feature-title">Interactive sandbox showcase game</div>
+                   <div class="feature-desc">
+                     Includes a compiled sandbox game demonstrating 3D rigid body dynamics, SAT bounding collisions, and character
+                     movement driven by custom state machine controllers with a physics-based gravity gun script.
                    </div>
                 </div>
               </li>
