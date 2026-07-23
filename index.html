@@ -67,7 +67,7 @@
             <span class="status-badge status-wip">In Progress</span>
           </div>
           <p class="project-desc">
-            A modular, data-oriented game engine prototype built entirely from scratch in C++20 using the Vulkan graphics API. Designed around a custom Entity Component System (ECS), it features a multi-threaded job scheduler, skeletal animation with skinning, Inverse Kinematics (IK) solvers, and a 3D rigid body physics engine.
+            A custom 3D game engine and editor built entirely from scratch in C++ and Vulkan. Instead of using pre-made commercial engines like Unity or Unreal, I wrote the core systems myself, including a multi-threaded task scheduler to utilize modern multi-core processors, a skeletal character animation system, a 3D physics engine for realistic movement and collisions, a static reflection generator, and a custom visual editor workspace.
           </p>
           <div class="tech-tags">
             <span class="tag">C++20</span>
@@ -75,22 +75,20 @@
             <span class="tag">ECS</span>
             <span class="tag">Multi-threading</span>
             <span class="tag">Skeletal Skinning</span>
-            <span class="tag">IK (FABRIK)</span>
-            <span class="tag">3D Physics (OBB SAT)</span>
+            <span class="tag">3D Physics</span>
+            <span class="tag">Static Reflection</span>
             <span class="tag">ufbx Loader</span>
             <span class="tag">Dear ImGui</span>
           </div>
           <ul class="project-highlights">
-            <li>Designed a multi-threaded task scheduler (Job System) with parallel index chunk partitioning</li>
-            <li>Implemented GPU Linear Blend Skinning (LBS) with hierarchical joint-pose interpolation (LERP/SLERP)</li>
-            <li>Coded 2-bone analytical and multi-joint FABRIK Inverse Kinematics (IK) solvers</li>
-            <li>Created a 3D rigid body physics engine with linear/angular integration and rotational impulse solvers</li>
-            <li>Wrote multi-shape collision solvers supporting Sphere-Sphere, Sphere-AABB, and OBB-OBB Separating Axis Theorem (SAT)</li>
-            <li>Integrated ufbx library for native FBX Binary/ASCII asset importing and animation curve baking at runtime</li>
-            <li>Vulkan render loop using push constant dynamic instancing, descriptor sets, and double-buffered synchronization</li>
-            <li>WYSIWYG ImGui editor with 3D gizmos, scene serialization, and bounding-sphere raycast picking</li>
-            <li>Designed a static reflection code generator parsing C++ source annotations to automate JSON serialization and UI property inspector binding</li>
-            <li>Created a showcase sandbox project combining 3D rigid body physics (gravity gun script) and character locomotion driven by 2D blend trees</li>
+            <li><strong>Multi-Threaded Job System</strong>: Distributes heavy calculations across multiple CPU cores to maximize performance and prevent lag</li>
+            <li><strong>Skeletal Character Animation</strong>: Animates 3D characters smoothly using virtual skeletons, blending walking and running movements</li>
+            <li><strong>3D Physics &amp; Collisions</strong>: Simulates gravity, object weight, and realistic physical collisions (bouncing, sliding, and tilting)</li>
+            <li><strong>Native FBX Asset Importer</strong>: Automatically reads and loads industry-standard 3D character and animation files directly at runtime</li>
+            <li><strong>Static Reflection Code Generator</strong>: Parses C++ annotations to automate saving/loading game worlds and editor UI property mapping</li>
+            <li><strong>Vulkan Rendering Loop</strong>: Renders high-performance 3D graphics directly on the GPU using efficient low-level code</li>
+            <li><strong>WYSIWYG Visual Editor</strong>: Includes an interactive editor interface with 3D move/rotate handles and real-time object inspection</li>
+            <li><strong>Interactive Sandbox Showcase Game</strong>: A playable demo showing off the physics engine, character locomotion, and a gravity gun script</li>
           </ul>
           <div class="project-links">
             <a href="engine.html" class="btn btn-primary">Learn More</a>

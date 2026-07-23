@@ -284,9 +284,7 @@
                 <div>
                    <div class="feature-title">Multi-threaded job system</div>
                    <div class="feature-desc">
-                     Distributes complex workload operations (like skeletal animations and physics updates)
-                     across CPU cores using a task-parallel job scheduler supporting dynamic index-chunk loop
-                     partitioning and lock-free yielding synchronization.
+                     Distributes heavy engine computations (like animation deforms and physics updates) across all available CPU cores. This prevents lag spikes, maximizes performance, and ensures a stable frame rate.
                    </div>
                 </div>
               </li>
@@ -302,12 +300,10 @@
                   </svg>
                 </div>
                 <div>
-                    <div class="feature-title">GPU skeletal skinning &amp; blend spaces</div>
-                    <div class="feature-desc">
-                      Deforms vertices dynamically on the GPU using Linear Blend Skinning (LBS). Features spherical linear
-                      interpolation (SLERP), hierarchical Forward Kinematics, 1D &amp; 2D Freeform Cartesian blend space trees,
-                      direct WASD keyboard controller input binding, and 2-bone / FABRIK Inverse Kinematics (IK) solvers.
-                    </div>
+                   <div class="feature-title">Skeletal character animation</div>
+                   <div class="feature-desc">
+                     Animates complex 3D characters smoothly using virtual skeletons, blending walking and running movements dynamically, and automatically adjusting foot placement relative to the ground.
+                   </div>
                 </div>
               </li>
 
@@ -321,11 +317,9 @@
                   </svg>
                 </div>
                 <div>
-                   <div class="feature-title">3D rigid body physics &amp; SAT</div>
+                   <div class="feature-title">3D physics &amp; collision engine</div>
                    <div class="feature-desc">
-                     Simulates physical dynamics with linear and angular integration, drag coefficients, and bounciness.
-                     Resolves multi-shape collisions (Sphere, AABB, OBB) using Separating Axis Theorem (SAT) projections
-                     and applies 3D rotational impulses to handle realistic bounces, tilts, and friction.
+                     Simulates realistic physical movement (gravity, drag, object weight) and calculates precise collisions, allowing objects to bounce, slide, and tilt naturally.
                    </div>
                 </div>
               </li>
@@ -339,11 +333,9 @@
                   </svg>
                 </div>
                 <div>
-                   <div class="feature-title">Direct FBX asset loader</div>
+                   <div class="feature-title">Direct FBX asset importer</div>
                    <div class="feature-desc">
-                     Integrates the ufbx library to natively import FBX Binary and ASCII assets at runtime.
-                     Automatically unrolls vertex index mappings, deduplicates vertex attributes, and bakes complex
-                     multi-curve animation data at 30 FPS into a compact runtime buffer.
+                     Natively imports industry-standard 3D models and animation files at runtime, converting complex multi-track animations into optimized memory structures.
                    </div>
                 </div>
               </li>
@@ -356,11 +348,9 @@
                   </svg>
                 </div>
                 <div>
-                   <div class="feature-title">Static reflection engine</div>
+                   <div class="feature-title">Custom reflection system</div>
                    <div class="feature-desc">
-                     Features a custom pre-processor and code generator (<code>reflection_generator</code>) that parses C++ annotations
-                     to generate component field layouts. This eliminates manual bindings, powering automatic JSON scene serialization
-                     and editor UI inspector panels.
+                     Automatically tracks C++ object properties to enable instant saving/loading of game worlds and displays properties in the editor inspector without requiring manual code bindings.
                    </div>
                 </div>
               </li>
@@ -374,10 +364,9 @@
                   </svg>
                 </div>
                 <div>
-                   <div class="feature-title">Interactive sandbox showcase game</div>
+                   <div class="feature-title">Interactive sandbox game</div>
                    <div class="feature-desc">
-                     Includes a compiled sandbox game demonstrating 3D rigid body dynamics, SAT bounding collisions, and character
-                     movement driven by custom state machine controllers with a physics-based gravity gun script.
+                     Demonstrates the engine's capabilities in a demo level featuring physics-controlled player movement and a physics-based gravity gun interaction script.
                    </div>
                 </div>
               </li>
@@ -392,16 +381,16 @@
             <div class="section-label">// challenges</div>
             <h2>Key challenges</h2>
             <p>
-              <strong>Vulkan Verbosity &amp; Safety</strong>: Vulkan has zero runtime safety fallback. Overcoming silent black screens involved implementing validation layer diagnostics and structured render passes to isolate pipeline states.
+              <strong>Vulkan Verbosity &amp; Safety</strong>: Vulkan has zero runtime safety fallback. Overcoming silent black screens involved implementing validation layers and diagnostics render passes <em>(ensures rendering is stable and bug-free on different graphics cards)</em>.
             </p>
             <p>
-              <strong>Racy Stack Allocations in Job System</strong>: Worker synchronization originally used stack-allocated primitives, leading to use-after-free corruption when the main thread exited early. This was resolved with a lock-free atomic chunk counter and cooperative spin-yielding (<code>std::this_thread::yield()</code>).
+              <strong>Racy Stack Allocations in Job System</strong>: Worker thread synchronization originally used stack-allocated primitives, causing random crashes when the main thread exited early. This was resolved with a lock-free atomic chunk counter and cooperative spin-yielding <em>(prevents game memory crashes during heavy multi-threaded workloads)</em>.
             </p>
             <p>
-              <strong>FBX Importing &amp; Curve Baking</strong>: Parsing split vertex attributes and Bezier keyframes was slow. This was solved by unrolling indices via a deduplicating vertex hash map and pre-baking animations into 30 FPS local transform arrays.
+              <strong>FBX Importing &amp; Curve Baking</strong>: Loading industry-standard 3D animation files is slow and prone to errors. This was solved by unrolling indices and pre-baking curve transformations into optimized memory tables at runtime <em>(enables instant animation loading from modeling software like Blender)</em>.
             </p>
             <p>
-              <strong>OBB Collision &amp; Rotational Impulses</strong>: Resolving oriented bounding box intersections required implementing Separating Axis Theorem (SAT) across 15 axes and transforming local inertia tensors to world space for realistic 3D torque/impulse response.
+              <strong>OBB Collision &amp; Rotational Impulses</strong>: Calculating physical interactions for rotating rectangular boxes is mathematically complex. I implemented Separating Axis Theorem (SAT) checks and 3D rotational impulse physics <em>(provides realistic movements like boxes tilting, sliding, and bouncing)</em>.
             </p>
           </section>
 
@@ -412,16 +401,16 @@
             <div class="section-label">// architecture</div>
             <h2>How it works</h2>
             <p>
-              <strong>Engine / Sandbox Isolation</strong>: The core runtime compiles as a separate static library, completely decoupling core infrastructure from client game logic. A Dear ImGui visual editor binds to Vulkan texture descriptors to render the viewport directly into editor panels.
+              <strong>Engine / Sandbox Isolation</strong>: The core engine is built as a standalone library separate from the game project, and visual editor elements like Dear ImGui bind directly to Vulkan graphics handles <em>(allows developers to test game ideas safely without breaking the engine's rendering infrastructure)</em>.
             </p>
             <p>
-              <strong>Data-Oriented ECS</strong>: Components are stored contiguously in memory pools using the Swap-Remove pattern. By avoiding deep pointer-chasing inheritance, systems achieve optimal L1/L2 cache line locality.
+              <strong>Data-Oriented ECS</strong>: Component data is stored contiguously in memory pools using the Swap-Remove pattern rather than using deep inheritance trees <em>(improves processor performance by ensuring memory is packed tight for modern CPU cache lines)</em>.
             </p>
             <p>
-              <strong>Task-Parallel Job System</strong>: Loop operations (skinning, physics) are partitioned into chunks and pushed to a lock-free thread pool queue, avoiding heap allocations via reference-capturing lambda SBO.
+              <strong>Task-Parallel Job System</strong>: Workloads (like physics and animation updates) are divided into chunks and distributed to worker threads without triggering slow system memory managers <em>(keeps gameplay running smoothly by utilizing all available CPU cores)</em>.
             </p>
             <p>
-              <strong>GPU Skinning &amp; Physics</strong>: Skinned meshes deform in the vertex shader using a shared UBO joint palette. The narrow-phase physics engine integrates gravity, detects Sphere/AABB/OBB intersections, and applies rotational impulses.
+              <strong>GPU Skinning &amp; Physics</strong>: Vertex skinning calculations are performed directly on the graphics card while the custom physics solver handles gravity and narrow-phase shape checks <em>(offloads complex math to the GPU to save CPU power for game scripting)</em>.
             </p>
           </section>
 
