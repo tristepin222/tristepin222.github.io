@@ -1,0 +1,25 @@
+var structufbx__constraint =
+[
+    [ "active", "structufbx__constraint.html#a561047aff2546ffcb3789ba139125fc5", null ],
+    [ "aim_up_node", "structufbx__constraint.html#ad73dd65436c487b9c0f5e06fa88131c9", null ],
+    [ "aim_up_type", "structufbx__constraint.html#a79dc173aa7cd5797d7cc8df6a1467040", null ],
+    [ "aim_up_vector", "structufbx__constraint.html#a5edaca519e320be4d343bbb12558d14e", null ],
+    [ "aim_vector", "structufbx__constraint.html#ae7cb4fc4793ef5d8e856f82ec6cac84f", null ],
+    [ "constrain_rotation", "structufbx__constraint.html#ac89a3ff69d95a0dacbdbfaee01633080", null ],
+    [ "constrain_scale", "structufbx__constraint.html#a8006719b8471d4cf330e3a8a55aeac31", null ],
+    [ "constrain_translation", "structufbx__constraint.html#abddd09d2288b07da32f162979299e31e", null ],
+    [ "element", "structufbx__constraint.html#aa6f8e8465bb77b15eddad182cd13c5ae", null ],
+    [ "element_id", "structufbx__constraint.html#ac8b46765babd3217765307f6b016b665", null ],
+    [ "ik_effector", "structufbx__constraint.html#ab6e5686b9c9ffb5a0be6873592d267d4", null ],
+    [ "ik_end_node", "structufbx__constraint.html#a7ed5c56b9890e75afd6fcc07f38b6c48", null ],
+    [ "ik_pole_vector", "structufbx__constraint.html#a3f0748bc960325e64ebdc6e393dfa19c", null ],
+    [ "name", "structufbx__constraint.html#a423ba72789ecd72e1745ca098829dc94", null ],
+    [ "node", "structufbx__constraint.html#a468fb089b1fea8b17398d703f7ba68ee", null ],
+    [ "props", "structufbx__constraint.html#a4ad0e2071eb7c876978fd75efacceb84", null ],
+    [ "targets", "structufbx__constraint.html#a3794828dbb39e2c5dfc1db6bdc2728d5", null ],
+    [ "transform_offset", "structufbx__constraint.html#ad4534200918b4b6fe826256992657f06", null ],
+    [ "type", "structufbx__constraint.html#a5fa5c45163a6363b637af6db1ba2db62", null ],
+    [ "type_name", "structufbx__constraint.html#aa9f4e905db02f6da84ff0752ed414c85", null ],
+    [ "typed_id", "structufbx__constraint.html#a4d93da1f8c7eb088e0b6bbc14d0fddb3", null ],
+    [ "weight", "structufbx__constraint.html#ac2d4e01639679afef028dc09cf6c5c2d", null ]
+];

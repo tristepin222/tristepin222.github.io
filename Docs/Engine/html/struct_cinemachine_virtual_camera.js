@@ -1,0 +1,25 @@
+var struct_cinemachine_virtual_camera =
+[
+    [ "active", "struct_cinemachine_virtual_camera.html#affe6602b403870da2d8803fd554e3ddb", null ],
+    [ "cameraPitch", "struct_cinemachine_virtual_camera.html#aeb916ed60ed812b936a8cb0d80680739", null ],
+    [ "cameraYaw", "struct_cinemachine_virtual_camera.html#acf58befcecc0d544766222163b1f5dd2", null ],
+    [ "currentPosition", "struct_cinemachine_virtual_camera.html#acbd1480b6a67d26ab7fe073feb6d2570", null ],
+    [ "currentRotationEuler", "struct_cinemachine_virtual_camera.html#a5f8a8b0032af178484f9fd01a984780b", null ],
+    [ "followDamping", "struct_cinemachine_virtual_camera.html#a25a3704e5fbeca436813d1e87cf90068", null ],
+    [ "followOffset", "struct_cinemachine_virtual_camera.html#ac9fcb90ea400ec1dbf80a13760023498", null ],
+    [ "followTarget", "struct_cinemachine_virtual_camera.html#a9d82a086ebb3ae04734e8a7457d6b562", null ],
+    [ "followTargetName", "struct_cinemachine_virtual_camera.html#a68a2b818ceb620ba2a053a1af3a7bb10", null ],
+    [ "fov", "struct_cinemachine_virtual_camera.html#a658d2e13390756fb59433f419e333406", null ],
+    [ "initialized", "struct_cinemachine_virtual_camera.html#acef5c9fa9a6d32760907b3362c1166c1", null ],
+    [ "lockToBone", "struct_cinemachine_virtual_camera.html#a293c4a5e8836dbe71eaaa7679b4d0296", null ],
+    [ "lookAtDamping", "struct_cinemachine_virtual_camera.html#a80bdd92b86c8c641580c6ef89ffec799", null ],
+    [ "lookAtTarget", "struct_cinemachine_virtual_camera.html#a28fd06f651bda16a988a5faf436ccec1", null ],
+    [ "lookAtTargetName", "struct_cinemachine_virtual_camera.html#aad012eaecedb7eb220288a4cdcaac988", null ],
+    [ "mode", "struct_cinemachine_virtual_camera.html#aeeb9268aa273088c6522396d61488384", null ],
+    [ "mouseLook", "struct_cinemachine_virtual_camera.html#a55ea9c93c0132ebc9bdf5758897665e5", null ],
+    [ "mouseOrbit", "struct_cinemachine_virtual_camera.html#ad2d57626bb2aae172a25264dcdb20baf", null ],
+    [ "orbitPitch", "struct_cinemachine_virtual_camera.html#ae67137bb6150c547025dd53648c860a0", null ],
+    [ "orbitSensitivity", "struct_cinemachine_virtual_camera.html#a6e3ae550bb3995b6d96faf0092bcc956", null ],
+    [ "orbitYaw", "struct_cinemachine_virtual_camera.html#a585d8ca4a67dcab62f70c73de880697b", null ],
+    [ "priority", "struct_cinemachine_virtual_camera.html#af941e77b3d695eaf9f1381c7cec73aa0", null ]
+];

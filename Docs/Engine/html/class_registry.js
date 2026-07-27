@@ -1,0 +1,28 @@
+var class_registry =
+[
+    [ "View", "class_registry_1_1_view.html", "class_registry_1_1_view" ],
+    [ "ComponentAddedCallback", "class_registry.html#a2aa8a3e0b0f34db5f326e6480f9c9b02", null ],
+    [ "ComponentRemovedCallback", "class_registry.html#aafe2dbc94217b5aa02170c19b64ecaf7", null ],
+    [ "Registry", "class_registry.html#ad72c0f2137201fd1b55684c9b63ab65d", null ],
+    [ "clear", "class_registry.html#ab7146777e8495aaaa8b3260b9ca9b117", null ],
+    [ "create", "class_registry.html#ac21e496215b081569cfc303e1a4c0b10", null ],
+    [ "destroy", "class_registry.html#ae620740b0c598d102a93703b3a8062fc", null ],
+    [ "emplace", "class_registry.html#aef27c0471c0baed89d9a52000cadba80", null ],
+    [ "ensureStorage", "class_registry.html#a7d7c99db0bd8e15ee2b664b7679af866", null ],
+    [ "ensureStorages", "class_registry.html#aa14e2887496b9fbd273628c4aac64dd6", null ],
+    [ "get", "class_registry.html#a3a9cf167bed1bea9a5415277ab24a85e", null ],
+    [ "getRef", "class_registry.html#a79cf8c82ad146856643e8c1b1cd76e3a", null ],
+    [ "getSmallestStorage", "class_registry.html#affc4f7327f647f457ee5ddc8a42d528a", null ],
+    [ "getSmallestStorage", "class_registry.html#adb68487e6a7a7b78fecbca96eef936b0", null ],
+    [ "getStorage", "class_registry.html#a29c242b9cba8fb7c50aa60d4703c1bf4", null ],
+    [ "has", "class_registry.html#a3981dfbd830cf8ac9ccd660d14009d91", null ],
+    [ "isValid", "class_registry.html#a2b959689667c10e31a4fabf6381b870e", null ],
+    [ "remove", "class_registry.html#a629e3280396e2e8cc06434895e746639", null ],
+    [ "subscribeToAdded", "class_registry.html#a959b3874c9b105ceae894aa641660cc0", null ],
+    [ "subscribeToRemoved", "class_registry.html#af3c697b81c9c6f2c78be1450b7be4220", null ],
+    [ "view", "class_registry.html#ac3554642b19de10f8f6cf0b1859b4777", null ],
+    [ "componentAddedCallbacks", "class_registry.html#a3cf26581cd3b39085a8fe6c58eac9d1c", null ],
+    [ "componentRemovedCallbacks", "class_registry.html#a878d1eaaefffd91d50d95a391cb1c2f9", null ],
+    [ "entities", "class_registry.html#a88bb34d2f2678464ff663e6dc0bb0b29", null ],
+    [ "storages", "class_registry.html#aacbbdbad38dc8560cebcf9ac4f93bcd1", null ]
+];

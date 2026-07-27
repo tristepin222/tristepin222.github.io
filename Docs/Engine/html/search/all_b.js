@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['kd_5findex_0',['kd_index',['../ufbx_8cpp.html#af61c0c6e5eb51a3c119b1dd645c1c3a2',1,'ufbx.cpp']]],
+  ['kd_5findices_1',['kd_indices',['../structufbxi__ngon__context.html#a4d0a67a7b15c0ef65d967540710124f8',1,'ufbxi_ngon_context::kd_indices'],['../ufbx_8cpp.html#a81afd9b748cfb132b8c7140478e26e73',1,'kd_indices:&#160;ufbx.cpp']]],
+  ['kd_5fnodes_2',['kd_nodes',['../structufbxi__ngon__context.html#a2578bf7b7fcb62e70c3ccb33466f1c69',1,'ufbxi_ngon_context']]],
+  ['key_3',['key',['../structufbxi__texture__file__entry.html#a2a4cff47315926a2d0a4c7b2ab829e5b',1,'ufbxi_texture_file_entry::key'],['../ufbx_8cpp.html#ae3fa37ea57ed636f4dab26f291dcf5c6',1,'key:&#160;ufbx.cpp']]],
+  ['key_20features_4',['Key Features',['../index.html#autotoc_md4',1,'']]],
+  ['key_5fclamp_5fthreshold_5',['key_clamp_threshold',['../structufbx__load__opts.html#a501e3947561458f209a97d831a4adbcf',1,'ufbx_load_opts']]],
+  ['key_5freduction_5fenabled_6',['key_reduction_enabled',['../structufbx__bake__opts.html#a52103a27db627a786149a04a525bf837',1,'ufbx_bake_opts']]],
+  ['key_5freduction_5fpasses_7',['key_reduction_passes',['../structufbx__bake__opts.html#a1f5e5d9db51d786249eaca8491f7e932',1,'ufbx_bake_opts']]],
+  ['key_5freduction_5frotation_8',['key_reduction_rotation',['../structufbx__bake__opts.html#a6383c691a29cc0e6d387663c7945ef17',1,'ufbx_bake_opts']]],
+  ['key_5freduction_5fthreshold_9',['key_reduction_threshold',['../structufbx__bake__opts.html#a273bbbf72de643f718dea67143036b7e',1,'ufbx_bake_opts']]],
+  ['key_5ftime_5fmax_10',['key_time_max',['../structufbx__baked__anim.html#a2306737b3fbb3772915d8bb63ca68267',1,'ufbx_baked_anim']]],
+  ['key_5ftime_5fmin_11',['key_time_min',['../structufbx__baked__anim.html#a691e4c075a923280855466d713a61ac4',1,'ufbx_baked_anim']]],
+  ['keyframe_12',['Keyframe',['../struct_keyframe.html',1,'']]],
+  ['keyframerot_13',['KeyframeRot',['../struct_keyframe_rot.html',1,'']]],
+  ['keyframes_14',['keyframes',['../structufbx__blend__channel.html#acbdd01bf2eda1e5b1c42de2b011df70b',1,'ufbx_blend_channel::keyframes'],['../structufbx__anim__curve.html#a4d953557ce5ef0a275f2caed26057c7d',1,'ufbx_anim_curve::keyframes']]],
+  ['keys_15',['keys',['../struct_property_channel.html#a676651e51cf10fb524a2831b5b6bf387',1,'PropertyChannel::keys'],['../structufbx__baked__prop.html#aaf956be3325ff9b9917243afb1b2c609',1,'ufbx_baked_prop::keys']]],
+  ['kind_16',['kind',['../struct_primitive_type.html#a325cbd36f45d3fa5f922bb74969fc53d',1,'PrimitiveType']]],
+  ['knot_5fvector_17',['knot_vector',['../structufbx__nurbs__basis.html#a278579bbbc109d8b64ad4c6cfe646b70',1,'ufbx_nurbs_basis']]],
+  ['ktime_5foffset_18',['ktime_offset',['../structufbxi__bake__context.html#a9d83d6b502d0bd268c8ab3d08cae34c7',1,'ufbxi_bake_context']]],
+  ['ktime_5fsec_19',['ktime_sec',['../structufbxi__context.html#a82839dd74297a93ccd0c023dce703b4e',1,'ufbxi_context']]],
+  ['ktime_5fsec_5fdouble_20',['ktime_sec_double',['../structufbxi__context.html#af0974be311edaca4a77a6c59d8f8daf1',1,'ufbxi_context']]],
+  ['ktime_5fsecond_21',['ktime_second',['../structufbx__metadata.html#a2438833710fe946c48d2575d20f75663',1,'ufbx_metadata']]]
+];

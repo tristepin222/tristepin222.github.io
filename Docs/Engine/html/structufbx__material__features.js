@@ -1,0 +1,27 @@
+var structufbx__material__features =
+[
+    [ "ambient_occlusion", "structufbx__material__features.html#a9e86f5aff2525f3e44acd2ae8d004118", null ],
+    [ "caustics", "structufbx__material__features.html#a8b49c915119f4d3e28cca51a53a93d0d", null ],
+    [ "coat", "structufbx__material__features.html#ad195689abb1343c0d23d6b96efa152b5", null ],
+    [ "coat_roughness_as_glossiness", "structufbx__material__features.html#a8af77422dedd9b3fb307e1a1a43345b6", null ],
+    [ "diffuse", "structufbx__material__features.html#afba648c3b5d3cefd2a65daf020b190c9", null ],
+    [ "diffuse_roughness", "structufbx__material__features.html#ac58f6f37841a60914624560555780d6a", null ],
+    [ "double_sided", "structufbx__material__features.html#a9dd45a085749db978351fa9609a077e0", null ],
+    [ "emission", "structufbx__material__features.html#a398ef2c8fa1d2e40b330554c919eaacf", null ],
+    [ "exit_to_background", "structufbx__material__features.html#ae175a66cc10816d3b12bbf25da6fe989", null ],
+    [ "features", "structufbx__material__features.html#aa9fca012fd58df795b5a942abc2b3cbd", null ],
+    [ "internal_reflections", "structufbx__material__features.html#af9d66643fa60c560c66fd42ae0567c83", null ],
+    [ "ior", "structufbx__material__features.html#a36675686a6f4e125928706d7b64d93a2", null ],
+    [ "matte", "structufbx__material__features.html#a2f0cb61a67299690791cc977b9cc8d6c", null ],
+    [ "metalness", "structufbx__material__features.html#af3c53cdd7aee7ccdbb50bf4eaa1ee84e", null ],
+    [ "opacity", "structufbx__material__features.html#a181f5445f9037dbfc8d93cd063e71643", null ],
+    [ "pbr", "structufbx__material__features.html#a8c2a36a7735fc8b7879b4162925d7b98", null ],
+    [ "roughness_as_glossiness", "structufbx__material__features.html#a85f2aa4f8f9915b091dfbb163b88e037", null ],
+    [ "sheen", "structufbx__material__features.html#a703b4abeb90a234f0b746e64402e7919", null ],
+    [ "specular", "structufbx__material__features.html#a673752f599c9c07f03c75b1b2cf8fc94", null ],
+    [ "thin_walled", "structufbx__material__features.html#a75635fc0e740b84e107fbe622e1eeeb5", null ],
+    [ "transmission", "structufbx__material__features.html#af774ff901c01c08aacb15449436afa07", null ],
+    [ "transmission_roughness", "structufbx__material__features.html#a96f5abb15c78de813b524180ec60fa21", null ],
+    [ "transmission_roughness_as_glossiness", "structufbx__material__features.html#ab345cef4e8f07c9b027b1e6799b83aa0", null ],
+    [ "unlit", "structufbx__material__features.html#a05635f9a91adb6c941def88eaa719ef5", null ]
+];
