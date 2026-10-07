@@ -32,7 +32,7 @@
     <img src="Media/Engine/ScreenShots/DefaultScene.png" alt="C++ Vulkan Game Engine screenshot" />
     <div class="banner-overlay">
       <div class="banner-label">
-        <div class="eyebrow">Personal Project · 2024–2025</div>
+        <div class="eyebrow">Personal Project · 2024–2026</div>
         <h1>C++ <span>Vulkan</span> Game Engine</h1>
       </div>
     </div>
@@ -369,6 +369,111 @@
                      Demonstrates the engine's capabilities in a demo level featuring physics-controlled player movement and a physics-based gravity gun interaction script.
                    </div>
                 </div>
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"/>
+                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                  </svg>
+                </div>
+                <div>
+                   <div class="feature-title">Atmospheric scattering &amp; dynamic weather</div>
+                   <div class="feature-desc">
+                     Simulates physically based planetary skies using real-time GPU compute LUTs (transmittance, multi-scattering, skyview, aerial perspective), volumetric raymarched cloud decks, day/night celestial bodies, and dynamic weather (rain, snow, ground wetness/puddles, and procedural lightning bolts).
+                   </div>
+                </div>
+              </li>
+
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m8 3 4 8 5-5 5 15H2L8 3z"/>
+                  </svg>
+                </div>
+                <div>
+                   <div class="feature-title">Sculptable terrain &amp; hybrid foliage engine</div>
+                   <div class="feature-desc">
+                     Features real-time 3D viewport heightfield sculpting with Hermite falloff brushes (Raise, Lower, Smooth, Flatten, Noise), multi-layer texture splatting with slope auto-texturing, multi-tile border seam stitching, and GPU-instanced swaying vegetation with vertex-driven wind.
+                   </div>
+                </div>
+              </li>
+
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                    <circle cx="12" cy="13" r="4"/>
+                  </svg>
+                </div>
+                <div>
+                   <div class="feature-title">Cinemachine procedural virtual cameras</div>
+                   <div class="feature-desc">
+                     Implements dynamic camera tracking including 3rd-person orbital follow, 1st-person skeletal bone-locking (attaching directly to character head bones), exponential position/rotation damping, dead zones, and priority-blended camera transitions.
+                   </div>
+                </div>
+              </li>
+
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7"/>
+                    <rect x="14" y="3" width="7" height="7"/>
+                    <rect x="14" y="14" width="7" height="7"/>
+                    <rect x="3" y="14" width="7" height="7"/>
+                  </svg>
+                </div>
+                <div>
+                   <div class="feature-title">Infinite 3D grid world &amp; 2D tilemaps</div>
+                   <div class="feature-desc">
+                     Supports 3D spatial voxel grids with infinite chunk hashing, Fast Voxel Traversal (3D DDA raycasting) for precision building, multi-layer 2D tilemaps, automatic sprite sheet slicing, and 2D/3D A* pathfinding.
+                   </div>
+                </div>
+              </li>
+
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="4" width="16" height="16" rx="2"/>
+                    <rect x="8" y="8" width="8" height="4" rx="1"/>
+                    <line x1="8" y1="16" x2="16" y2="16"/>
+                  </svg>
+                </div>
+                <div>
+                   <div class="feature-title">Fluent UI builder &amp; interface engine</div>
+                   <div class="feature-desc">
+                     A retained-mode UI system featuring Canvas overlays, RectTransform layouts, interactive widgets (buttons, sliders, toggles), pre-built gameplay templates (health bars, dialogues, inventories), and a one-click C++ code generator for the editor.
+                   </div>
+                </div>
+              </li>
+
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>
+                </div>
+                <div>
+                   <div class="feature-title">Post-processing &amp; runtime shader compiler</div>
+                   <div class="feature-desc">
+                     Multipass rendering pipeline featuring Cascaded Shadow Maps (CSM), Screen-Space Ambient Occlusion (SSAO), photographic HDR tonemapping (ACES, AgX, Filmic, Reinhard), and an integrated glslc runtime shader compiler with timestamp caching.
+                   </div>
+                </div>
+              </li>
+
+              <li class="feature-item">
+                <div class="feature-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="20" x2="18" y2="10"/>
+                    <line x1="12" y1="20" x2="12" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="14"/>
+                  </svg>
+                </div>
+                <div>
+                   <div class="feature-title">Unified profiler &amp; Tracy integration</div>
+                   <div class="feature-desc">
+                     Features an in-engine 120-frame rolling performance monitor with timeline scrubber and category breakdown, coupled with deep nanosecond callstack profiling via Tracy Profiler.
+                   </div>
+                </div>
               </li>
 
             </ul>
@@ -384,13 +489,19 @@
               <strong>Vulkan Verbosity &amp; Safety</strong>: Vulkan has zero runtime safety fallback. Overcoming silent black screens involved implementing validation layers and diagnostics render passes <em>(ensures rendering is stable and bug-free on different graphics cards)</em>.
             </p>
             <p>
+              <strong>Real-Time Atmospheric Scattering LUTs</strong>: Evaluating multi-bounce atmospheric integrals per pixel across screen space is computationally prohibitive. Decoupled optical depth and in-scattering into 4 compute shader passes (Transmittance, Multi-Scattering, SkyView, and 3D Aerial Perspective) evaluated once per frame <em>(delivers photorealistic skies and dynamic day/night cycles at 60+ FPS)</em>.
+            </p>
+            <p>
+              <strong>Live Terrain Sculpting without VRAM Bottlenecks</strong>: Re-uploading full heightfield meshes on every brush stroke caused massive CPU-GPU synchronization stalls. Resolved by partitioning terrains into submesh chunks and dispatching partial staging buffer uploads only for dirty chunks <em>(enables smooth 60 FPS viewport terrain sculpting)</em>.
+            </p>
+            <p>
+              <strong>Dynamic Plugin Boundary &amp; State Sync</strong>: Hot-reloading systems across DLL boundaries often leads to memory address fragmentation and broken UI states. Engineered a clean C ABI handshake passing explicit registry, system manager, and ImGui context pointers <em>(allows modular plugins like Skymo and Cinemachine to run seamlessly without engine recompilation)</em>.
+            </p>
+            <p>
               <strong>Racy Stack Allocations in Job System</strong>: Worker thread synchronization originally used stack-allocated primitives, causing random crashes when the main thread exited early. This was resolved with a lock-free atomic chunk counter and cooperative spin-yielding <em>(prevents game memory crashes during heavy multi-threaded workloads)</em>.
             </p>
             <p>
-              <strong>FBX Importing &amp; Curve Baking</strong>: Loading industry-standard 3D animation files is slow and prone to errors. This was solved by unrolling indices and pre-baking curve transformations into optimized memory tables at runtime <em>(enables instant animation loading from modeling software like Blender)</em>.
-            </p>
-            <p>
-              <strong>OBB Collision &amp; Rotational Impulses</strong>: Calculating physical interactions for rotating rectangular boxes is mathematically complex. I implemented Separating Axis Theorem (SAT) checks and 3D rotational impulse physics <em>(provides realistic movements like boxes tilting, sliding, and bouncing)</em>.
+              <strong>OBB Collision &amp; Rotational Impulses</strong>: Calculating physical interactions for rotating rectangular boxes is mathematically complex. I implemented Separating Axis Theorem (SAT) checks across 15 projection axes and 3D rotational impulse physics <em>(provides realistic movements like boxes tilting, sliding, and bouncing)</em>.
             </p>
           </section>
 
@@ -401,16 +512,22 @@
             <div class="section-label">// architecture</div>
             <h2>How it works</h2>
             <p>
-              <strong>Engine / Sandbox Isolation</strong>: The core engine is built as a standalone library separate from the game project, and visual editor elements like Dear ImGui bind directly to Vulkan graphics handles <em>(allows developers to test game ideas safely without breaking the engine's rendering infrastructure)</em>.
+              <strong>Dynamic Plugin Host</strong>: Modular subsystems (Skymo atmosphere, Cinemachine cameras, A* pathfinding) compile into isolated shared libraries loaded dynamically at runtime via a unified C ABI <em>(accelerates development cycles and keeps core engine builds lightweight)</em>.
             </p>
             <p>
-              <strong>Data-Oriented ECS</strong>: Component data is stored contiguously in memory pools using the Swap-Remove pattern rather than using deep inheritance trees <em>(improves processor performance by ensuring memory is packed tight for modern CPU cache lines)</em>.
+              <strong>Data-Oriented ECS &amp; Cloning</strong>: Component data is stored contiguously in dense memory pools using the Swap-Remove pattern rather than deep inheritance trees, paired with deep entity cloning <em>(maximizes CPU cache locality and makes entity duplication instant)</em>.
             </p>
             <p>
-              <strong>Task-Parallel Job System</strong>: Workloads (like physics and animation updates) are divided into chunks and distributed to worker threads without triggering slow system memory managers <em>(keeps gameplay running smoothly by utilizing all available CPU cores)</em>.
+              <strong>Compute-Driven Atmosphere &amp; Weather</strong>: Real-time atmospheric radiance is driven by GPU compute pipelines, while volumetric raymarched clouds, rain/snow particles, and procedural lightning meshes render dynamically in the viewport.
             </p>
             <p>
-              <strong>GPU Skinning &amp; Physics</strong>: Vertex skinning calculations are performed directly on the graphics card while the custom physics solver handles gravity and narrow-phase shape checks <em>(offloads complex math to the GPU to save CPU power for game scripting)</em>.
+              <strong>Chunked Terrain &amp; Instanced Vegetation</strong>: Terrains partition into spatial submesh chunks with Hermite smoothstep deformation, automated multi-tile seam stitching, and GPU-instanced swaying foliage.
+            </p>
+            <p>
+              <strong>Multipass Vulkan Pipeline</strong>: Coordinates Cascaded Shadow Maps (CSM), SSAO contact shadows with bilateral blur, HDR photographic tonemapping (ACES, AgX, Filmic), and an integrated glslc runtime shader compiler with timestamp caching.
+            </p>
+            <p>
+              <strong>Unified Profiler &amp; Tracy Integration</strong>: Features an in-engine 120-frame rolling performance monitor with timeline scrubber and category breakdown, coupled with deep nanosecond callstack profiling via Tracy Profiler.
             </p>
           </section>
 
@@ -435,7 +552,7 @@
             </div>
             <div class="sidebar-stat">
               <span class="label">Platform</span>
-              <span class="value">Windows</span>
+              <span class="value">Windows | Linux</span>
             </div>
             <div class="sidebar-stat">
               <span class="label">Build system</span>
@@ -452,8 +569,9 @@
             <div class="tech-tags">
               <span class="tag">C++20</span>
               <span class="tag">Vulkan</span>
-              <span class="tag">GLSL</span>
-              <span class="tag">SPIR-V</span>
+              <span class="tag">GLSL / SPIR-V</span>
+              <span class="tag">Compute Shaders</span>
+              <span class="tag">Tracy Profiler</span>
               <span class="tag">Dear ImGui</span>
               <span class="tag">ImGuizmo</span>
               <span class="tag">GLFW</span>
